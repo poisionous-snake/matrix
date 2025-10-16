@@ -11,9 +11,7 @@
 !.gitignore
 !.scalafmt.conf
 !README.md
-# !build/
 
-# 明确允许 build 目录及其所有内容
 !build/
 !build/*
 !build/*/

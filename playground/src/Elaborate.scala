@@ -8,8 +8,8 @@ object Elaborate extends App {
       "locationInfoStyle=wrapInAtSquareBracket"
     ).reduce(_ + "," + _)
   )
-  circt.stage.ChiselStage.emitSystemVerilogFile(new mac.Int4ToFp16(), args, firtoolOptions)
-  circt.stage.ChiselStage.emitSystemVerilogFile(new mac.Fp16Add(), args, firtoolOptions)
-  circt.stage.ChiselStage.emitSystemVerilogFile(new mac.Fp16Mul(), args, firtoolOptions)
-  circt.stage.ChiselStage.emitSystemVerilogFile(new mac.Systolic8x8Tile(), args, firtoolOptions)
+  circt.stage.ChiselStage.emitSystemVerilogFile(new mac.Int4Fp16Mul(), args, firtoolOptions)
+  // circt.stage.ChiselStage.emitSystemVerilogFile(new mac.Fp16Add(), args, firtoolOptions)
+  // circt.stage.ChiselStage.emitSystemVerilogFile(new mac.Fp16Mul(), args, firtoolOptions)
+  // circt.stage.ChiselStage.emitSystemVerilogFile(new mac.Systolic8x8Tile(), args, firtoolOptions)
 }
