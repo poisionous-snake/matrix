@@ -23,7 +23,7 @@ import org.scalatest.matchers.must.Matchers
   */
 class GCDSpec extends AnyFreeSpec with Matchers {
   "Gcd should calculate proper greatest common denominator" in {
-    simulate(new Systolic8x8Tile()) { dut =>
+    simulate(new Fusion()) { dut =>
       // val testValues = for {
       //   x <- 0 to 10
       //   y <- 0 to 10
@@ -38,8 +38,39 @@ class GCDSpec extends AnyFreeSpec with Matchers {
       // dut.reset.poke(false.B)
       // dut.clock.step()
 
-      dut.io.start.poke(true.B)
-      dut.clock.step(24)
+      // dut.io.iAbs.poke(15.U)
+      // dut.io.frac.poke("b11000000000".U)
+      // dut.clock.step()
+
+      dut.io.int8.poke("b00100010".U) // 2, 2
+      dut.io.fp16.poke("b0_10000_1000000000".U) // 1.5 * 2^1 
+      dut.io.fusion.poke(false.B)
+      dut.clock.step()
+
+      dut.io.int8.poke("b00100010".U) // 34
+      dut.io.fp16.poke("b0_10000_1000000000".U)
+      dut.io.fusion.poke(true.B)
+      dut.clock.step()
+
+      dut.io.int8.poke("b00110011".U)
+      dut.io.fp16.poke("b0_10000_1000000000".U)
+      dut.io.fusion.poke(false.B)
+      dut.clock.step()
+
+      dut.io.int8.poke("b00110011".U) // 51
+      dut.io.fp16.poke("b0_10000_1000000000".U) // 011111101
+      dut.io.fusion.poke(true.B)
+      dut.clock.step()
+
+      dut.io.int8.poke("b01010101".U)
+      dut.io.fp16.poke("b0_10000_1000000000".U)
+      dut.io.fusion.poke(false.B)
+      dut.clock.step()
+
+      dut.io.int8.poke("b01010101".U)
+      dut.io.fp16.poke("b0_10000_1000000000".U)
+      dut.io.fusion.poke(true.B)
+      dut.clock.step()
 
       // var sent, received, cycles: Int = 0
       // while (sent != 100 && received != 100) {

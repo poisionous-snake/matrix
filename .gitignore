@@ -16,6 +16,10 @@
 !build/*
 !build/*/
 
+!docs/
+!docs/*
+!docs/*/
+
 # mill
 !*.mill
 !.mill-version
