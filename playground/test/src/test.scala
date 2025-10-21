@@ -42,32 +42,32 @@ class GCDSpec extends AnyFreeSpec with Matchers {
       // dut.io.frac.poke("b11000000000".U)
       // dut.clock.step()
 
-      dut.io.int8.poke("b00100010".U) // 2, 2
+      dut.io.int8.poke("b0010_0010".U) // 2, 2
       dut.io.fp16.poke("b0_10000_1000000000".U) // 1.5 * 2^1 
       dut.io.fusion.poke(false.B)
       dut.clock.step()
 
-      dut.io.int8.poke("b00100010".U) // 34
-      dut.io.fp16.poke("b0_10000_1000000000".U)
+      dut.io.int8.poke("b0010_0010".U) // 34
+      dut.io.fp16.poke("b0_10000_1000000000".U) // 11 0011
       dut.io.fusion.poke(true.B)
       dut.clock.step()
 
-      dut.io.int8.poke("b00110011".U)
-      dut.io.fp16.poke("b0_10000_1000000000".U)
+      dut.io.int8.poke("b0011_0011".U)  // 3, 3
+      dut.io.fp16.poke("b0_10000_1000000000".U) // 4.5  100.1
       dut.io.fusion.poke(false.B)
       dut.clock.step()
 
-      dut.io.int8.poke("b00110011".U) // 51
+      dut.io.int8.poke("b0011_0011".U) // 51
       dut.io.fp16.poke("b0_10000_1000000000".U) // 011111101
       dut.io.fusion.poke(true.B)
       dut.clock.step()
 
-      dut.io.int8.poke("b01010101".U)
+      dut.io.int8.poke("b0101_0101".U)
       dut.io.fp16.poke("b0_10000_1000000000".U)
       dut.io.fusion.poke(false.B)
       dut.clock.step()
 
-      dut.io.int8.poke("b01010101".U)
+      dut.io.int8.poke("b0101_0101".U)
       dut.io.fp16.poke("b0_10000_1000000000".U)
       dut.io.fusion.poke(true.B)
       dut.clock.step()

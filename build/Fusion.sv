@@ -13,119 +13,116 @@
 module fracSum(	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:6:7]
   input  [3:0]  io_iAbs,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:7:16]
   input  [9:0]  io_frac,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:7:16]
-  output [14:0] io_fracSum,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:7:16]
-  output [1:0]  io_expAdd	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:7:16]
+  output [14:0] io_fracSum	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:7:16]
 );
 
   assign io_fracSum =
     (io_iAbs[0] ? {5'h1, io_frac} : 15'h0) + (io_iAbs[1] ? {4'h1, io_frac, 1'h0} : 15'h0)
     + (io_iAbs[2] ? {3'h1, io_frac, 2'h0} : 15'h0)
-    + (io_iAbs[3] ? {2'h1, io_frac, 3'h0} : 15'h0);	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:6:7, :15:{12,20,37}, :16:16]
-  assign io_expAdd = io_iAbs[3] ? 2'h3 : io_iAbs[2] ? 2'h2 : {1'h0, io_iAbs[1]};	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:6:7, :15:{20,37}, src/main/scala/chisel3/util/Mux.scala:126:16]
+    + (io_iAbs[3] ? {2'h1, io_frac, 3'h0} : 15'h0);	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:6:7, :14:{12,20,37}, :15:16]
 endmodule
 
-module Norm(	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:31:7]
-  input         clock,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:31:7]
-                reset,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:31:7]
-  input  [15:0] io_originFp16,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:32:16]
-  input  [18:0] io_fracSum,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:32:16]
-  input  [2:0]  io_expAdd,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:32:16]
-  input         io_sign,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:32:16]
-  output [15:0] io_fp16	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:32:16]
+module Norm(	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:22:7]
+  input  [15:0] io_originFp16,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:23:16]
+  input  [18:0] io_fracSum,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:23:16]
+  input         io_sign,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:23:16]
+  output [15:0] io_fp16	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:23:16]
 );
 
-  wire [4:0]  _GEN = {2'h0, io_expAdd};	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:44:34]
-  wire [18:0] _exp_T_2 = io_fracSum >> _GEN + 5'hF;	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:44:34, :45:46]
-  `ifndef SYNTHESIS	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:47:11]
-    always @(posedge clock) begin	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:47:11]
-      if ((`PRINTF_COND_) & ~reset)	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:47:11]
-        $fwrite(32'h80000002, "%d %d\n", io_expAdd, _exp_T_2[0]);	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:45:46, :47:{11,44}]
-    end // always @(posedge)
-  `endif // not def SYNTHESIS
+  wire [12:0] finalFrac =
+    io_fracSum[18]
+      ? {io_fracSum[17:6], |(io_fracSum[5:0])}
+      : io_fracSum[17]
+          ? {io_fracSum[16:5], |(io_fracSum[4:0])}
+          : io_fracSum[16]
+              ? {io_fracSum[15:4], |(io_fracSum[3:0])}
+              : io_fracSum[15]
+                  ? {io_fracSum[14:3], |(io_fracSum[2:0])}
+                  : io_fracSum[14]
+                      ? {io_fracSum[13:2], |(io_fracSum[1:0])}
+                      : io_fracSum[13]
+                          ? io_fracSum[12:0]
+                          : io_fracSum[12]
+                              ? {io_fracSum[11:0], 1'h0}
+                              : io_fracSum[11]
+                                  ? {io_fracSum[10:0], 2'h0}
+                                  : io_fracSum[10] ? {io_fracSum[9:0], 3'h0} : 13'h0;	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:35:{16,27,75,82}, :36:{16,27,75,82}, :37:{16,27,75,82}, :38:{16,27,75,82}, :39:{16,27,75,82}, :40:{16,27}, :41:{16,27}, :42:{16,27}, :43:{16,27,35}, src/main/scala/chisel3/util/Mux.scala:126:16]
+  wire [10:0] roundedFrac =
+    {1'h0, finalFrac[12:3]}
+    + {10'h0, finalFrac[2] & (finalFrac[1] | finalFrac[0] | finalFrac[3])};	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:41:27, :46:24, :47:26, :48:26, :49:27, :51:{25,45}, :52:{33,41}, src/main/scala/chisel3/util/Mux.scala:126:16]
   assign io_fp16 =
     {io_sign,
-     io_originFp16[14:10] + _GEN + {4'h0, _exp_T_2[0]},
-     io_fracSum[18]
-       ? io_fracSum[17:8]
-       : io_fracSum[17]
-           ? io_fracSum[16:7]
-           : io_fracSum[16]
-               ? io_fracSum[15:6]
-               : io_fracSum[15]
-                   ? io_fracSum[14:5]
-                   : io_fracSum[14]
-                       ? io_fracSum[13:4]
-                       : io_fracSum[13]
-                           ? io_fracSum[12:3]
-                           : io_fracSum[12]
-                               ? io_fracSum[11:2]
-                               : io_fracSum[11]
-                                   ? io_fracSum[10:1]
-                                   : io_fracSum[10] ? io_fracSum[9:0] : 10'h0};	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:31:7, :41:34, :44:34, :45:{34,46}, :49:{19,37}, :50:{19,37}, :51:{19,37}, :52:{19,37}, :53:{19,37}, :54:{19,37}, :55:{19,37}, :56:{19,37}, :57:{19,37}, :60:19, src/main/scala/chisel3/util/Mux.scala:126:16]
+     io_originFp16[14:10]
+       + {1'h0,
+          (io_fracSum[18]
+             ? 4'h8
+             : {1'h0,
+                io_fracSum[17]
+                  ? 3'h7
+                  : io_fracSum[16]
+                      ? 3'h6
+                      : io_fracSum[15]
+                          ? 3'h5
+                          : io_fracSum[14]
+                              ? 3'h4
+                              : {1'h0,
+                                 io_fracSum[13]
+                                   ? 2'h3
+                                   : io_fracSum[12] ? 2'h2 : {1'h0, io_fracSum[11]}}})
+            + {3'h0, roundedFrac[10]}},
+     roundedFrac[10] ? roundedFrac[10:1] : roundedFrac[9:0]};	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:22:7, :31:34, :35:16, :36:16, :37:16, :38:16, :39:16, :40:16, :41:{16,27}, :42:16, :43:27, :52:41, :53:35, :54:{23,49,68}, :68:8, :70:22, :72:19, src/main/scala/chisel3/util/Mux.scala:126:16]
 endmodule
 
-module Fusion(	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:63:7]
-  input         clock,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:63:7]
-                reset,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:63:7]
-  input  [7:0]  io_int8,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:64:16]
-  input  [15:0] io_fp16,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:64:16]
-  input         io_fusion,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:64:16]
-  output [15:0] io_output0,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:64:16]
-                io_output1	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:64:16]
+module Fusion(	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:75:7]
+  input         clock,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:75:7]
+                reset,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:75:7]
+  input  [7:0]  io_int8,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:76:16]
+  input  [15:0] io_fp16,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:76:16]
+  input         io_fusion,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:76:16]
+  output [15:0] io_output0,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:76:16]
+                io_output1	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:76:16]
 );
 
-  wire [15:0] _norm1_io_fp16;	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:96:23]
-  wire [15:0] _norm0_io_fp16;	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:95:23]
-  wire [14:0] _fracSum1_io_fracSum;	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:83:26]
-  wire [1:0]  _fracSum1_io_expAdd;	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:83:26]
-  wire [14:0] _fracSum0_io_fracSum;	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:82:26]
-  wire [1:0]  _fracSum0_io_expAdd;	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:82:26]
-  wire        sign0 = io_int8[3] ^ io_fp16[15];	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:73:{24,28,37}]
-  wire        sign1 = io_int8[7] ^ io_fp16[15];	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:73:37, :74:{24,28}]
-  wire [7:0]  iAbsFull = sign1 ? ~io_int8 + 8'h1 : io_int8;	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:74:28, :80:{23,31,40}]
-  wire [2:0]  _GEN = {1'h0, _fracSum0_io_expAdd};	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:77:43, :82:26, :93:40]
-  `ifndef SYNTHESIS	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:109:11]
-    always @(posedge clock) begin	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:109:11]
-      if ((`PRINTF_COND_) & ~reset)	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:109:11]
-        $fwrite(32'h80000002, "%b %b\n", _norm0_io_fp16, _norm1_io_fp16);	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:95:23, :96:23, :109:11]
+  wire [15:0] _norm1_io_fp16;	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:105:23]
+  wire [15:0] _norm0_io_fp16;	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:104:23]
+  wire [14:0] _fracSum1_io_fracSum;	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:95:26]
+  wire [14:0] _fracSum0_io_fracSum;	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:94:26]
+  wire        sign0 = io_int8[3] ^ io_fp16[15];	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:85:{24,28,37}]
+  wire        sign1 = io_int8[7] ^ io_fp16[15];	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:85:37, :86:{24,28}]
+  wire [18:0] _GEN = {4'h0, _fracSum0_io_fracSum};	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:89:43, :94:26, :102:49]
+  `ifndef SYNTHESIS	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:116:11]
+    always @(posedge clock) begin	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:116:11]
+      if ((`PRINTF_COND_) & ~reset)	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:116:11]
+        $fwrite(32'h80000002, "%b %b\n", _norm0_io_fp16, _norm1_io_fp16);	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:104:23, :105:23, :116:11]
     end // always @(posedge)
   `endif // not def SYNTHESIS
-  fracSum fracSum0 (	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:82:26]
+  fracSum fracSum0 (	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:94:26]
     .io_iAbs
-      (io_fusion ? iAbsFull[3:0] : sign0 ? ~(io_int8[3:0]) + 4'h1 : io_int8[3:0]),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:73:28, :77:{20,28,36,43}, :80:23, :84:{28,48}]
-    .io_frac    (io_fp16[9:0]),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:85:32]
-    .io_fracSum (_fracSum0_io_fracSum),
-    .io_expAdd  (_fracSum0_io_expAdd)
+      (io_fusion
+         ? (sign1 ? ~(io_int8[3:0]) + 4'h1 : io_int8[3:0])
+         : sign0 ? ~(io_int8[3:0]) + 4'h1 : io_int8[3:0]),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:76:16, :85:28, :86:28, :89:{20,28,36,43}, :92:{23,31,40}, :96:28]
+    .io_frac    (io_fp16[9:0]),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:97:32]
+    .io_fracSum (_fracSum0_io_fracSum)
   );
-  fracSum fracSum1 (	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:83:26]
-    .io_iAbs
-      (io_fusion ? iAbsFull[7:4] : sign1 ? ~(io_int8[7:4]) + 4'h1 : io_int8[7:4]),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:74:28, :77:43, :78:{20,28,36,43}, :80:23, :86:{28,48}]
-    .io_frac    (io_fp16[9:0]),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:85:32]
-    .io_fracSum (_fracSum1_io_fracSum),
-    .io_expAdd  (_fracSum1_io_expAdd)
+  fracSum fracSum1 (	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:95:26]
+    .io_iAbs    (sign1 ? ~(io_int8[7:4]) + 4'h1 : io_int8[7:4]),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:86:28, :89:43, :90:{20,28,36,43}]
+    .io_frac    (io_fp16[9:0]),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:97:32]
+    .io_fracSum (_fracSum1_io_fracSum)
   );
-  Norm norm0 (	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:95:23]
-    .clock         (clock),
-    .reset         (reset),
+  Norm norm0 (	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:104:23]
     .io_originFp16 (io_fp16),
-    .io_fracSum    ({_fracSum0_io_fracSum, 4'h0}),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:77:43, :82:26, :98:45]
-    .io_expAdd     (_GEN),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:93:40]
-    .io_sign       (sign0),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:73:28]
+    .io_fracSum    (_GEN),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:102:49]
+    .io_sign       (sign0),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:85:28]
     .io_fp16       (_norm0_io_fp16)
   );
-  Norm norm1 (	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:96:23]
-    .clock         (clock),
-    .reset         (reset),
+  Norm norm1 (	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:105:23]
     .io_originFp16 (io_fp16),
     .io_fracSum
-      (io_fusion
-         ? {_fracSum1_io_fracSum, 4'h0} + {4'h0, _fracSum0_io_fracSum}
-         : {_fracSum1_io_fracSum, 4'h0}),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:77:43, :82:26, :83:26, :90:{43,49}, :104:28]
-    .io_expAdd     (io_fusion ? _GEN - 3'h4 : {1'h0, _fracSum1_io_expAdd}),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:77:43, :83:26, :93:40, :105:27]
-    .io_sign       (sign1),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:74:28]
+      (io_fusion ? {_fracSum1_io_fracSum, 4'h0} + _GEN : {4'h0, _fracSum1_io_fracSum}),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:89:43, :95:26, :102:49, :112:28]
+    .io_sign       (sign1),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:86:28]
     .io_fp16       (_norm1_io_fp16)
   );
-  assign io_output0 = _norm0_io_fp16;	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:63:7, :95:23]
-  assign io_output1 = _norm1_io_fp16;	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:63:7, :96:23]
+  assign io_output0 = _norm0_io_fp16;	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:75:7, :104:23]
+  assign io_output1 = _norm1_io_fp16;	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:75:7, :105:23]
 endmodule
 
