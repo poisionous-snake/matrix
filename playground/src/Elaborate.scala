@@ -8,5 +8,5 @@ object Elaborate extends App {
       "locationInfoStyle=wrapInAtSquareBracket"
     ).reduce(_ + "," + _)
   )
-  circt.stage.ChiselStage.emitSystemVerilogFile(new mac.Fusion(), args, firtoolOptions)
+  circt.stage.ChiselStage.emitSystemVerilogFile(new mac.InnerProduct(), args = Array(      "--throw-on-first-error", "--split-verilog", "--target-dir=./build"), firtoolOptions)
 }

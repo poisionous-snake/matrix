@@ -2,6 +2,57 @@
 // Standard header to adapt well known macros for prints and assertions.
 
 // Users can define 'PRINTF_COND' to add an extra gate to prints.
+// Standard header to adapt well known macros for register randomization.
+`ifndef RANDOMIZE
+  `ifdef RANDOMIZE_REG_INIT
+    `define RANDOMIZE
+  `endif // RANDOMIZE_REG_INIT
+`endif // not def RANDOMIZE
+
+// RANDOM may be set to an expression that produces a 32-bit random unsigned value.
+`ifndef RANDOM
+  `define RANDOM $random
+`endif // not def RANDOM
+
+// Users can define INIT_RANDOM as general code that gets injected into the
+// initializer block for modules with registers.
+`ifndef INIT_RANDOM
+  `define INIT_RANDOM
+`endif // not def INIT_RANDOM
+
+// If using random initialization, you can also define RANDOMIZE_DELAY to
+// customize the delay used, otherwise 0.002 is used.
+`ifndef RANDOMIZE_DELAY
+  `define RANDOMIZE_DELAY 0.002
+`endif // not def RANDOMIZE_DELAY
+
+// Define INIT_RANDOM_PROLOG_ for use in our modules below.
+`ifndef INIT_RANDOM_PROLOG_
+  `ifdef RANDOMIZE
+    `ifdef VERILATOR
+      `define INIT_RANDOM_PROLOG_ `INIT_RANDOM
+    `else  // VERILATOR
+      `define INIT_RANDOM_PROLOG_ `INIT_RANDOM #`RANDOMIZE_DELAY begin end
+    `endif // VERILATOR
+  `else  // RANDOMIZE
+    `define INIT_RANDOM_PROLOG_
+  `endif // RANDOMIZE
+`endif // not def INIT_RANDOM_PROLOG_
+
+// Include register initializers in init blocks unless synthesis is set
+`ifndef SYNTHESIS
+  `ifndef ENABLE_INITIAL_REG_
+    `define ENABLE_INITIAL_REG_
+  `endif // not def ENABLE_INITIAL_REG_
+`endif // not def SYNTHESIS
+
+// Include rmemory initializers in init blocks unless synthesis is set
+`ifndef SYNTHESIS
+  `ifndef ENABLE_INITIAL_MEM_
+    `define ENABLE_INITIAL_MEM_
+  `endif // not def ENABLE_INITIAL_MEM_
+`endif // not def SYNTHESIS
+
 `ifndef PRINTF_COND_
   `ifdef PRINTF_COND
     `define PRINTF_COND_ (`PRINTF_COND)
@@ -10,74 +61,12 @@
   `endif // PRINTF_COND
 `endif // not def PRINTF_COND_
 
-module fracSum(	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:6:7]
-  input  [3:0]  io_iAbs,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:7:16]
-  input  [9:0]  io_frac,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:7:16]
-  output [14:0] io_fracSum	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:7:16]
-);
-
-  assign io_fracSum =
-    (io_iAbs[0] ? {5'h1, io_frac} : 15'h0) + (io_iAbs[1] ? {4'h1, io_frac, 1'h0} : 15'h0)
-    + (io_iAbs[2] ? {3'h1, io_frac, 2'h0} : 15'h0)
-    + (io_iAbs[3] ? {2'h1, io_frac, 3'h0} : 15'h0);	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:6:7, :14:{12,20,37}, :15:16]
-endmodule
-
-module Norm(	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:22:7]
-  input  [15:0] io_originFp16,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:23:16]
-  input  [18:0] io_fracSum,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:23:16]
-  input         io_sign,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:23:16]
-  output [15:0] io_fp16	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:23:16]
-);
-
-  wire [12:0] finalFrac =
-    io_fracSum[18]
-      ? {io_fracSum[17:6], |(io_fracSum[5:0])}
-      : io_fracSum[17]
-          ? {io_fracSum[16:5], |(io_fracSum[4:0])}
-          : io_fracSum[16]
-              ? {io_fracSum[15:4], |(io_fracSum[3:0])}
-              : io_fracSum[15]
-                  ? {io_fracSum[14:3], |(io_fracSum[2:0])}
-                  : io_fracSum[14]
-                      ? {io_fracSum[13:2], |(io_fracSum[1:0])}
-                      : io_fracSum[13]
-                          ? io_fracSum[12:0]
-                          : io_fracSum[12]
-                              ? {io_fracSum[11:0], 1'h0}
-                              : io_fracSum[11]
-                                  ? {io_fracSum[10:0], 2'h0}
-                                  : io_fracSum[10] ? {io_fracSum[9:0], 3'h0} : 13'h0;	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:35:{16,27,75,82}, :36:{16,27,75,82}, :37:{16,27,75,82}, :38:{16,27,75,82}, :39:{16,27,75,82}, :40:{16,27}, :41:{16,27}, :42:{16,27}, :43:{16,27,35}, src/main/scala/chisel3/util/Mux.scala:126:16]
-  wire [10:0] roundedFrac =
-    {1'h0, finalFrac[12:3]}
-    + {10'h0, finalFrac[2] & (finalFrac[1] | finalFrac[0] | finalFrac[3])};	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:41:27, :46:24, :47:26, :48:26, :49:27, :51:{25,45}, :52:{33,41}, src/main/scala/chisel3/util/Mux.scala:126:16]
-  assign io_fp16 =
-    {io_sign,
-     io_originFp16[14:10]
-       + {1'h0,
-          (io_fracSum[18]
-             ? 4'h8
-             : {1'h0,
-                io_fracSum[17]
-                  ? 3'h7
-                  : io_fracSum[16]
-                      ? 3'h6
-                      : io_fracSum[15]
-                          ? 3'h5
-                          : io_fracSum[14]
-                              ? 3'h4
-                              : {1'h0,
-                                 io_fracSum[13]
-                                   ? 2'h3
-                                   : io_fracSum[12] ? 2'h2 : {1'h0, io_fracSum[11]}}})
-            + {3'h0, roundedFrac[10]}},
-     roundedFrac[10] ? roundedFrac[10:1] : roundedFrac[9:0]};	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:22:7, :31:34, :35:16, :36:16, :37:16, :38:16, :39:16, :40:16, :41:{16,27}, :42:16, :43:27, :52:41, :53:35, :54:{23,49,68}, :68:8, :70:22, :72:19, src/main/scala/chisel3/util/Mux.scala:126:16]
-endmodule
-
 module Fusion(	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:75:7]
   input         clock,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:75:7]
                 reset,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:75:7]
   input  [7:0]  io_int8,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:76:16]
-  input  [15:0] io_fp16,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:76:16]
+  input  [15:0] io_fp16_0,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:76:16]
+                io_fp16_1,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:76:16]
   input         io_fusion,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:76:16]
   output [15:0] io_output0,	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:76:16]
                 io_output1	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:76:16]
@@ -87,8 +76,8 @@ module Fusion(	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:75:7]
   wire [15:0] _norm0_io_fp16;	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:104:23]
   wire [14:0] _fracSum1_io_fracSum;	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:95:26]
   wire [14:0] _fracSum0_io_fracSum;	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:94:26]
-  wire        sign0 = io_int8[3] ^ io_fp16[15];	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:85:{24,28,37}]
-  wire        sign1 = io_int8[7] ^ io_fp16[15];	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:85:37, :86:{24,28}]
+  wire        sign0 = io_int8[3] ^ io_fp16_0[15];	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:85:{24,28,40}]
+  wire        sign1 = io_int8[7] ^ io_fp16_1[15];	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:86:{24,28,40}]
   wire [18:0] _GEN = {4'h0, _fracSum0_io_fracSum};	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:89:43, :94:26, :102:49]
   `ifndef SYNTHESIS	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:116:11]
     always @(posedge clock) begin	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:116:11]
@@ -101,22 +90,22 @@ module Fusion(	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:75:7]
       (io_fusion
          ? (sign1 ? ~(io_int8[3:0]) + 4'h1 : io_int8[3:0])
          : sign0 ? ~(io_int8[3:0]) + 4'h1 : io_int8[3:0]),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:76:16, :85:28, :86:28, :89:{20,28,36,43}, :92:{23,31,40}, :96:28]
-    .io_frac    (io_fp16[9:0]),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:97:32]
+    .io_frac    (io_fp16_0[9:0]),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:97:35]
     .io_fracSum (_fracSum0_io_fracSum)
   );
   fracSum fracSum1 (	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:95:26]
     .io_iAbs    (sign1 ? ~(io_int8[7:4]) + 4'h1 : io_int8[7:4]),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:86:28, :89:43, :90:{20,28,36,43}]
-    .io_frac    (io_fp16[9:0]),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:97:32]
+    .io_frac    (io_fp16_1[9:0]),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:99:35]
     .io_fracSum (_fracSum1_io_fracSum)
   );
   Norm norm0 (	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:104:23]
-    .io_originFp16 (io_fp16),
+    .io_originFp16 (io_fp16_0),
     .io_fracSum    (_GEN),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:102:49]
     .io_sign       (sign0),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:85:28]
     .io_fp16       (_norm0_io_fp16)
   );
   Norm norm1 (	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:105:23]
-    .io_originFp16 (io_fp16),
+    .io_originFp16 (io_fp16_1),
     .io_fracSum
       (io_fusion ? {_fracSum1_io_fracSum, 4'h0} + _GEN : {4'h0, _fracSum1_io_fracSum}),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:89:43, :95:26, :102:49, :112:28]
     .io_sign       (sign1),	// @[home/yzy/chisel-playground/playground/src/Fusion.scala:86:28]

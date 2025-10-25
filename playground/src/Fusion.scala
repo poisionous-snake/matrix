@@ -75,15 +75,15 @@ class Norm extends Module {
 class Fusion extends Module {
     val io = IO(new Bundle {
         val int8 = Input(UInt(8.W))
-        val fp16 = Input(UInt(16.W))
+        val fp16 = Input(Vec(2, UInt(16.W)))
 
         val fusion = Input(Bool())
 
         val output0 = Output(UInt(16.W))
         val output1 = Output(UInt(16.W))
     })
-    val sign0 = io.int8(3) ^ io.fp16(15)
-    val sign1 = io.int8(7) ^ io.fp16(15)
+    val sign0 = io.int8(3) ^ io.fp16(0)(15)
+    val sign1 = io.int8(7) ^ io.fp16(1)(15)
 
     // separate
     val iAbs0 = Mux(sign0, ~io.int8(3, 0) + 1.U, io.int8(3, 0))
@@ -94,21 +94,21 @@ class Fusion extends Module {
     val fracSum0 = Module(new fracSum())
     val fracSum1 = Module(new fracSum())
     fracSum0.io.iAbs := Mux(io.fusion, iAbsFull(3, 0), iAbs0)
-    fracSum0.io.frac := io.fp16(9, 0)
+    fracSum0.io.frac := io.fp16(0)(9, 0)
     fracSum1.io.iAbs := iAbs1
-    fracSum1.io.frac := io.fp16(9, 0)
+    fracSum1.io.frac := io.fp16(1)(9, 0)
 
     val fusionFracSum = Wire(UInt(19.W))
     fusionFracSum := (fracSum1.io.fracSum << 4) +& fracSum0.io.fracSum
 
     val norm0 = Module(new Norm())
     val norm1 = Module(new Norm())
-    norm0.io.originFp16 := io.fp16
+    norm0.io.originFp16 := io.fp16(0)
     norm0.io.fracSum := fracSum0.io.fracSum
     norm0.io.sign := sign0
     io.output0 := norm0.io.fp16
 
-    norm1.io.originFp16 := io.fp16
+    norm1.io.originFp16 := io.fp16(1)
     norm1.io.fracSum := Mux(io.fusion, fusionFracSum, fracSum1.io.fracSum)
     norm1.io.sign := sign1
     io.output1 := norm1.io.fp16

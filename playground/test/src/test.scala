@@ -23,7 +23,7 @@ import org.scalatest.matchers.must.Matchers
   */
 class GCDSpec extends AnyFreeSpec with Matchers {
   "Gcd should calculate proper greatest common denominator" in {
-    simulate(new Fusion()) { dut =>
+    simulate(new InnerProduct(SIZE = 32)) { dut =>
       // val testValues = for {
       //   x <- 0 to 10
       //   y <- 0 to 10
@@ -33,44 +33,54 @@ class GCDSpec extends AnyFreeSpec with Matchers {
       //   (new GcdOutputBundle(16)).Lit(_.value1 -> x.U, _.value2 -> y.U, _.gcd -> BigInt(x).gcd(BigInt(y)).U)
       // }
 
-      // dut.reset.poke(true.B)
-      // dut.clock.step()
-      // dut.reset.poke(false.B)
-      // dut.clock.step()
+      // ---------innerProduct test---------
+      for(i <- 0 until dut.io.fp.length)
+        dut.io.fp(i).poke("b0_10000_1000000000".U) // 1.5 * 2^1
 
-      // dut.io.iAbs.poke(15.U)
-      // dut.io.frac.poke("b11000000000".U)
-      // dut.clock.step()
+      for(i <- 0 until dut.io.int.length)
+        dut.io.int(i).poke("b0000_0001".U)
 
-      dut.io.int8.poke("b0010_0010".U) // 2, 2
-      dut.io.fp16.poke("b0_10000_1000000000".U) // 1.5 * 2^1 
-      dut.io.fusion.poke(false.B)
-      dut.clock.step()
-
-      dut.io.int8.poke("b0010_0010".U) // 34
-      dut.io.fp16.poke("b0_10000_1000000000".U) // 11 0011
       dut.io.fusion.poke(true.B)
-      dut.clock.step()
 
-      dut.io.int8.poke("b0011_0011".U)  // 3, 3
-      dut.io.fp16.poke("b0_10000_1000000000".U) // 4.5  100.1
-      dut.io.fusion.poke(false.B)
-      dut.clock.step()
+      dut.clock.step(6)
 
-      dut.io.int8.poke("b0011_0011".U) // 51
-      dut.io.fp16.poke("b0_10000_1000000000".U) // 011111101
-      dut.io.fusion.poke(true.B)
-      dut.clock.step()
 
-      dut.io.int8.poke("b0101_0101".U)
-      dut.io.fp16.poke("b0_10000_1000000000".U)
-      dut.io.fusion.poke(false.B)
-      dut.clock.step()
+      // ---------fusion test---------
+      // dut.io.int8.poke("b0010_0010".U) // 2, 2
+      // dut.io.fp16(0).poke("b0_10000_1000000000".U) // 1.5 * 2^1 
+      // dut.io.fp16(1).poke("b0_10000_1000000000".U) 
+      // dut.io.fusion.poke(false.B)
+      // dut.clock.step()
 
-      dut.io.int8.poke("b0101_0101".U)
-      dut.io.fp16.poke("b0_10000_1000000000".U)
-      dut.io.fusion.poke(true.B)
-      dut.clock.step()
+      // dut.io.int8.poke("b0010_0010".U) // 34
+      // dut.io.fp16(0).poke("b0_10000_1000000000".U) 
+      // dut.io.fp16(1).poke("b0_10000_1000000000".U) 
+      // dut.io.fusion.poke(true.B)
+      // dut.clock.step()
+
+      // dut.io.int8.poke("b0011_0011".U)  // 3, 3
+      // dut.io.fp16(0).poke("b0_10000_1000000000".U)
+      // dut.io.fp16(1).poke("b0_10000_1000000000".U)
+      // dut.io.fusion.poke(false.B)
+      // dut.clock.step()
+
+      // dut.io.int8.poke("b0011_0011".U) // 51
+      // dut.io.fp16(0).poke("b0_10000_1000000000".U) 
+      // dut.io.fp16(1).poke("b0_10000_1000000000".U) 
+      // dut.io.fusion.poke(true.B)
+      // dut.clock.step()
+
+      // dut.io.int8.poke("b0101_0101".U)
+      // dut.io.fp16(0).poke("b0_10000_1000000000".U) 
+      // dut.io.fp16(1).poke("b0_10000_1000000000".U) 
+      // dut.io.fusion.poke(false.B)
+      // dut.clock.step()
+
+      // dut.io.int8.poke("b0101_0101".U)
+      // dut.io.fp16(0).poke("b0_10000_1000000000".U) 
+      // dut.io.fp16(1).poke("b0_10000_1000000000".U) 
+      // dut.io.fusion.poke(true.B)
+      // dut.clock.step()
 
       // var sent, received, cycles: Int = 0
       // while (sent != 100 && received != 100) {
