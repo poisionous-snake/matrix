@@ -3,8 +3,8 @@ package mac
 import chisel3._
 import chisel3.util._
 
-// import hardfloat._
-// import consts._
+import hardfloat._
+import consts._
 
 class InnerProduct(val SIZE: Int = 32) extends Module {
     val io = IO(new Bundle{
@@ -21,27 +21,34 @@ class InnerProduct(val SIZE: Int = 32) extends Module {
         fusionArray(i).io.fusion := io.fusion
     }
 
-    val outputs0 = fusionArray.map(_.io.output0).map(o => RegNext(o))
-    val outputs1 = fusionArray.map(_.io.output1).map(o => RegNext(o))
+    val outputs0 = fusionArray.map(_.io.output0).map(o => RegNext(o)).map(fp => {
+        val trans = Module(new fNToRecFN(expWidth = 5, sigWidth = 11))
+        trans.io.in := fp
+        trans.io.out
+    })
+    
+    val outputs1 = fusionArray.map(_.io.output1).map(o => RegNext(o)).map(fp => {
+        val trans = Module(new fNToRecFN(expWidth = 5, sigWidth = 11))
+        trans.io.in := fp
+        trans.io.out
+    })
+    
+    printf("output0 = %b, output1 = %b\n", outputs0(0), outputs1(0))
 
     def pipelinedAdderTree(inputs: Seq[UInt]): UInt = {
         if (inputs.length == 1) inputs.head
         else {
             val nextLevel = inputs.grouped(2).map {
                 case Seq(a, b) =>
-                    // val adder = Module(new AddRecFN(expWidth = 5, sigWidth = 11))
-                    // adder.io.subOp := false.B
-                    // adder.io.a := a // TODO: fnToRecFn
-                    // adder.io.b := b
-                    // adder.io.roundingMode := round_near_even
-                    // adder.io.detectTininess := true.B
-
-                    val adder = Module(new Fp16Add())
-                    printf("a = %b, b = %b\n", a, b)
-                    adder.io.in1 := a
-                    adder.io.in2 := b
+                    val adder = Module(new AddRecFN(expWidth = 5, sigWidth = 11))
+                    adder.io.subOp := false.B
+                    adder.io.a := a
+                    adder.io.b := b
+                    printf("a: %b, b: %b\n", a, b)
+                    adder.io.roundingMode := round_near_even
+                    adder.io.detectTininess := true.B
                     RegNext(adder.io.out)
-                case Seq(a) => RegNext(a)
+                case Seq(a) => a  
             }.toSeq
             pipelinedAdderTree(nextLevel)
         }
@@ -49,11 +56,17 @@ class InnerProduct(val SIZE: Int = 32) extends Module {
 
     val sum0 = pipelinedAdderTree(outputs0)
     val sum1 = pipelinedAdderTree(outputs1)
-    when(io.fusion){
-        io.result := sum1
-    } .otherwise {
-        io.result := RegNext(sum0 + sum1)
-    } 
+
+    val finalAdder = Module(new AddRecFN(expWidth = 5, sigWidth = 11))
+    finalAdder.io.subOp := false.B
+    finalAdder.io.a := sum0
+    finalAdder.io.b := sum1
+    finalAdder.io.roundingMode := round_near_even
+    finalAdder.io.detectTininess := true.B
+
+    val transBack = Module(new recFNToFN(expWidth = 5, sigWidth = 11))
+    transBack.io.in := Mux(io.fusion, sum1, RegNext(finalAdder.io.out))
+    io.result := transBack.io.out
 
     printf("result = %b\n", io.result);
 }
