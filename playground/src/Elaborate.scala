@@ -8,5 +8,6 @@ object Elaborate extends App {
       "locationInfoStyle=wrapInAtSquareBracket"
     ).reduce(_ + "," + _)
   )
-  circt.stage.ChiselStage.emitSystemVerilogFile(new mac.InnerProduct(), args = Array(      "--throw-on-first-error", "--split-verilog", "--target-dir=./build"), firtoolOptions)
+  chisel3.Driver.execute(Array("--target-dir", "./build"), () => new mac.InnerProduct())
+  chisel3.Driver.execute(Array("--target-dir", "./build"), () => new exp_unit.ExpUnitFixPoint(16, 10, 8, 4))
 }

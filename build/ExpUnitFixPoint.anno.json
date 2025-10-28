@@ -1,0 +1,23 @@
+[
+  {
+    "class":"firrtl.transforms.CombinationalPath",
+    "sink":"~ExpUnitFixPoint|ExpUnitFixPoint>io_out_exp",
+    "sources":[
+      "~ExpUnitFixPoint|ExpUnitFixPoint>io_in_value"
+    ]
+  },
+  {
+    "class":"logger.LogLevelAnnotation",
+    "globalLogLevel":{
+      
+    }
+  },
+  {
+    "class":"firrtl.EmitCircuitAnnotation",
+    "emitter":"firrtl.VerilogEmitter"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxTargetDirAnno",
+    "targetDir":"./build"
+  }
+]

@@ -18,7 +18,7 @@ class Int4Fp16Mul extends Module {
     val exp = f(14, 10)
     val fZero = f(14, 0) === 0.U
     val addedExp = Wire(UInt(6.W))
-    val bound = MuxLookup(iAbs, 0.U)(
+    val bound = MuxLookup(iAbs, 0.U, (
         Seq(
             "b0000".U -> 0.U,
             "b0001".U -> 0.U,
@@ -30,7 +30,7 @@ class Int4Fp16Mul extends Module {
             "b0111".U -> 2.U,
             "b1000".U -> 3.U,
         )
-    )
+    ))
     addedExp := exp +& bound
 
     // sign
@@ -42,7 +42,7 @@ class Int4Fp16Mul extends Module {
     //  11
     //   11
     val fracSum = Wire(UInt(14.W))
-    fracSum := MuxLookup(iAbs, 0.U)(
+    fracSum := MuxLookup(iAbs, 0.U, (
         Seq(
             0.U -> 0.U,
             1.U -> frac,
@@ -54,7 +54,7 @@ class Int4Fp16Mul extends Module {
             7.U -> (frac +& (frac >> 1) +& (frac >> 2)),
             8.U -> frac
         )
-    )
+    ))
     val fracShift = fracSum(13) // exp + 1
     val finalExp = addedExp + fracShift
     val expOverflow = finalExp(5) // INF
