@@ -1,10 +1,5 @@
 fracSum.sv
 Norm.sv
 Fusion.sv
-fNToRecFN.sv
-AddRawFN.sv
-RoundAnyRawFNToRecFN_ie5_is13_oe5_os11.sv
-RoundRawFNToRecFN_e5_s11.sv
-AddRecFN.sv
-recFNToFN.sv
+fp16Add.sv
 InnerProduct.sv

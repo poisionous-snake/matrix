@@ -61,423 +61,374 @@
   `endif // PRINTF_COND
 `endif // not def PRINTF_COND_
 
-module InnerProduct(	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7]
-  input         clock,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7]
-                reset,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7]
-  input  [7:0]  io_int_0,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_int_1,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_int_2,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_int_3,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_int_4,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_int_5,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_int_6,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_int_7,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_int_8,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_int_9,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_int_10,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_int_11,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_int_12,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_int_13,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_int_14,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_int_15,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-  input  [15:0] io_fp_0,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_1,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_2,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_3,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_4,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_5,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_6,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_7,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_8,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_9,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_10,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_11,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_12,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_13,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_14,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_15,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_16,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_17,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_18,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_19,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_20,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_21,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_22,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_23,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_24,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_25,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_26,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_27,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_28,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_29,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_30,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-                io_fp_31,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-  output [15:0] io_result,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
-  input         io_fusion	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:10:16]
+module InnerProduct(	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7]
+  input         clock,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7]
+                reset,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7]
+  input  [7:0]  io_int_0,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_int_1,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_int_2,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_int_3,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_int_4,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_int_5,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_int_6,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_int_7,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_int_8,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_int_9,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_int_10,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_int_11,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_int_12,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_int_13,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_int_14,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_int_15,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+  input  [15:0] io_fp_0,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_1,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_2,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_3,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_4,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_5,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_6,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_7,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_8,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_9,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_10,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_11,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_12,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_13,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_14,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_15,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_16,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_17,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_18,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_19,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_20,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_21,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_22,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_23,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_24,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_25,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_26,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_27,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_28,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_29,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_30,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+                io_fp_31,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+  output [15:0] io_result,	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
+  input         io_fusion	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:7:16]
 );
 
-  wire [15:0] _transBack_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:67:27]
-  wire [16:0] _finalAdder_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:60:28]
-  wire [16:0] _sum1_nextLevel_adder_14_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum1_nextLevel_adder_13_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum1_nextLevel_adder_12_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum1_nextLevel_adder_11_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum1_nextLevel_adder_10_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum1_nextLevel_adder_9_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum1_nextLevel_adder_8_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum1_nextLevel_adder_7_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum1_nextLevel_adder_6_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum1_nextLevel_adder_5_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum1_nextLevel_adder_4_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum1_nextLevel_adder_3_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum1_nextLevel_adder_2_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum1_nextLevel_adder_1_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum1_nextLevel_adder_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum0_nextLevel_adder_14_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum0_nextLevel_adder_13_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum0_nextLevel_adder_12_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum0_nextLevel_adder_11_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum0_nextLevel_adder_10_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum0_nextLevel_adder_9_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum0_nextLevel_adder_8_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum0_nextLevel_adder_7_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum0_nextLevel_adder_6_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum0_nextLevel_adder_5_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum0_nextLevel_adder_4_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum0_nextLevel_adder_3_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum0_nextLevel_adder_2_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum0_nextLevel_adder_1_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _sum0_nextLevel_adder_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-  wire [16:0] _outputs1_trans_15_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-  wire [16:0] _outputs1_trans_14_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-  wire [16:0] _outputs1_trans_13_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-  wire [16:0] _outputs1_trans_12_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-  wire [16:0] _outputs1_trans_11_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-  wire [16:0] _outputs1_trans_10_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-  wire [16:0] _outputs1_trans_9_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-  wire [16:0] _outputs1_trans_8_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-  wire [16:0] _outputs1_trans_7_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-  wire [16:0] _outputs1_trans_6_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-  wire [16:0] _outputs1_trans_5_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-  wire [16:0] _outputs1_trans_4_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-  wire [16:0] _outputs1_trans_3_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-  wire [16:0] _outputs1_trans_2_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-  wire [16:0] _outputs1_trans_1_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-  wire [16:0] _outputs1_trans_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-  wire [16:0] _outputs0_trans_15_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-  wire [16:0] _outputs0_trans_14_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-  wire [16:0] _outputs0_trans_13_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-  wire [16:0] _outputs0_trans_12_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-  wire [16:0] _outputs0_trans_11_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-  wire [16:0] _outputs0_trans_10_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-  wire [16:0] _outputs0_trans_9_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-  wire [16:0] _outputs0_trans_8_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-  wire [16:0] _outputs0_trans_7_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-  wire [16:0] _outputs0_trans_6_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-  wire [16:0] _outputs0_trans_5_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-  wire [16:0] _outputs0_trans_4_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-  wire [16:0] _outputs0_trans_3_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-  wire [16:0] _outputs0_trans_2_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-  wire [16:0] _outputs0_trans_1_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-  wire [16:0] _outputs0_trans_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-  wire [15:0] _fusionArray_15_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_15_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_14_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_14_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_13_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_13_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_12_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_12_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_11_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_11_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_10_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_10_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_9_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_9_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_8_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_8_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_7_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_7_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_6_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_6_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_5_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_5_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_4_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_4_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_3_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_3_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_2_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_2_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_1_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_1_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_0_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  wire [15:0] _fusionArray_0_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
-  reg  [15:0] outputs0_REG;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-  reg  [15:0] outputs0_REG_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-  reg  [15:0] outputs0_REG_2;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-  reg  [15:0] outputs0_REG_3;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-  reg  [15:0] outputs0_REG_4;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-  reg  [15:0] outputs0_REG_5;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-  reg  [15:0] outputs0_REG_6;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-  reg  [15:0] outputs0_REG_7;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-  reg  [15:0] outputs0_REG_8;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-  reg  [15:0] outputs0_REG_9;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-  reg  [15:0] outputs0_REG_10;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-  reg  [15:0] outputs0_REG_11;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-  reg  [15:0] outputs0_REG_12;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-  reg  [15:0] outputs0_REG_13;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-  reg  [15:0] outputs0_REG_14;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-  reg  [15:0] outputs0_REG_15;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-  reg  [15:0] outputs1_REG;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-  reg  [15:0] outputs1_REG_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-  reg  [15:0] outputs1_REG_2;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-  reg  [15:0] outputs1_REG_3;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-  reg  [15:0] outputs1_REG_4;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-  reg  [15:0] outputs1_REG_5;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-  reg  [15:0] outputs1_REG_6;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-  reg  [15:0] outputs1_REG_7;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-  reg  [15:0] outputs1_REG_8;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-  reg  [15:0] outputs1_REG_9;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-  reg  [15:0] outputs1_REG_10;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-  reg  [15:0] outputs1_REG_11;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-  reg  [15:0] outputs1_REG_12;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-  reg  [15:0] outputs1_REG_13;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-  reg  [15:0] outputs1_REG_14;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-  reg  [15:0] outputs1_REG_15;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-  reg  [16:0] sum0_nextLevel_0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum0_nextLevel_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum0_nextLevel_2;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum0_nextLevel_3;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum0_nextLevel_4;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum0_nextLevel_5;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum0_nextLevel_6;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum0_nextLevel_7;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum0_nextLevel_0_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum0_nextLevel_1_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum0_nextLevel_2_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum0_nextLevel_3_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum0_nextLevel_0_2;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum0_nextLevel_1_2;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum1_nextLevel_0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum1_nextLevel_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum1_nextLevel_2;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum1_nextLevel_3;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum1_nextLevel_4;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum1_nextLevel_5;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum1_nextLevel_6;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum1_nextLevel_7;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum1_nextLevel_0_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum1_nextLevel_1_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum1_nextLevel_2_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum1_nextLevel_3_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum1_nextLevel_0_2;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum1_nextLevel_1_2;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] sum1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-  reg  [16:0] transBack_io_in_REG;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:68:52]
-  `ifndef SYNTHESIS	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:36:11]
-    always @(posedge clock) begin	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:36:11]
-      if ((`PRINTF_COND_) & ~reset) begin	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:36:11, :71:11]
-        $fwrite(32'h80000002, "output0 = %b, output1 = %b\n", _outputs0_trans_io_out,
-                _outputs1_trans_io_out);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27, :31:27, :36:11]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", _outputs0_trans_io_out,
-                _outputs0_trans_1_io_out);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27, :36:11, :47:27]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", _outputs0_trans_2_io_out,
-                _outputs0_trans_3_io_out);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27, :36:11, :47:27]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", _outputs0_trans_4_io_out,
-                _outputs0_trans_5_io_out);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27, :36:11, :47:27]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", _outputs0_trans_6_io_out,
-                _outputs0_trans_7_io_out);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27, :36:11, :47:27]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", _outputs0_trans_8_io_out,
-                _outputs0_trans_9_io_out);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27, :36:11, :47:27]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", _outputs0_trans_10_io_out,
-                _outputs0_trans_11_io_out);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27, :36:11, :47:27]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", _outputs0_trans_12_io_out,
-                _outputs0_trans_13_io_out);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27, :36:11, :47:27]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", _outputs0_trans_14_io_out,
-                _outputs0_trans_15_io_out);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27, :36:11, :47:27]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", sum0_nextLevel_0, sum0_nextLevel_1);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:36:11, :47:27, :50:28]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", sum0_nextLevel_2, sum0_nextLevel_3);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:36:11, :47:27, :50:28]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", sum0_nextLevel_4, sum0_nextLevel_5);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:36:11, :47:27, :50:28]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", sum0_nextLevel_6, sum0_nextLevel_7);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:36:11, :47:27, :50:28]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", sum0_nextLevel_0_1, sum0_nextLevel_1_1);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:36:11, :47:27, :50:28]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", sum0_nextLevel_2_1, sum0_nextLevel_3_1);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:36:11, :47:27, :50:28]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", sum0_nextLevel_0_2, sum0_nextLevel_1_2);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:36:11, :47:27, :50:28]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", _outputs1_trans_io_out,
-                _outputs1_trans_1_io_out);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27, :36:11, :47:27]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", _outputs1_trans_2_io_out,
-                _outputs1_trans_3_io_out);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27, :36:11, :47:27]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", _outputs1_trans_4_io_out,
-                _outputs1_trans_5_io_out);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27, :36:11, :47:27]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", _outputs1_trans_6_io_out,
-                _outputs1_trans_7_io_out);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27, :36:11, :47:27]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", _outputs1_trans_8_io_out,
-                _outputs1_trans_9_io_out);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27, :36:11, :47:27]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", _outputs1_trans_10_io_out,
-                _outputs1_trans_11_io_out);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27, :36:11, :47:27]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", _outputs1_trans_12_io_out,
-                _outputs1_trans_13_io_out);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27, :36:11, :47:27]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", _outputs1_trans_14_io_out,
-                _outputs1_trans_15_io_out);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27, :36:11, :47:27]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", sum1_nextLevel_0, sum1_nextLevel_1);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:36:11, :47:27, :50:28]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", sum1_nextLevel_2, sum1_nextLevel_3);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:36:11, :47:27, :50:28]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", sum1_nextLevel_4, sum1_nextLevel_5);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:36:11, :47:27, :50:28]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", sum1_nextLevel_6, sum1_nextLevel_7);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:36:11, :47:27, :50:28]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", sum1_nextLevel_0_1, sum1_nextLevel_1_1);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:36:11, :47:27, :50:28]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", sum1_nextLevel_2_1, sum1_nextLevel_3_1);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:36:11, :47:27, :50:28]
-        $fwrite(32'h80000002, "a: %b, b: %b\n", sum1_nextLevel_0_2, sum1_nextLevel_1_2);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:36:11, :47:27, :50:28]
-        $fwrite(32'h80000002, "result = %b\n", _transBack_io_out);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:36:11, :67:27, :71:11]
+  wire [15:0] _finalAdder_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:45:28]
+  wire [15:0] _sum1_nextLevel_adder_14_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum1_nextLevel_adder_13_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum1_nextLevel_adder_12_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum1_nextLevel_adder_11_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum1_nextLevel_adder_10_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum1_nextLevel_adder_9_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum1_nextLevel_adder_8_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum1_nextLevel_adder_7_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum1_nextLevel_adder_6_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum1_nextLevel_adder_5_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum1_nextLevel_adder_4_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum1_nextLevel_adder_3_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum1_nextLevel_adder_2_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum1_nextLevel_adder_1_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum1_nextLevel_adder_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum0_nextLevel_adder_14_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum0_nextLevel_adder_13_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum0_nextLevel_adder_12_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum0_nextLevel_adder_11_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum0_nextLevel_adder_10_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum0_nextLevel_adder_9_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum0_nextLevel_adder_8_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum0_nextLevel_adder_7_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum0_nextLevel_adder_6_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum0_nextLevel_adder_5_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum0_nextLevel_adder_4_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum0_nextLevel_adder_3_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum0_nextLevel_adder_2_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum0_nextLevel_adder_1_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _sum0_nextLevel_adder_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+  wire [15:0] _fusionArray_15_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_15_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_14_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_14_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_13_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_13_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_12_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_12_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_11_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_11_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_10_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_10_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_9_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_9_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_8_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_8_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_7_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_7_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_6_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_6_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_5_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_5_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_4_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_4_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_3_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_3_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_2_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_2_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_1_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_1_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_0_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  wire [15:0] _fusionArray_0_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
+  reg  [15:0] outputs0_0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+  reg  [15:0] outputs0_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+  reg  [15:0] outputs0_2;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+  reg  [15:0] outputs0_3;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+  reg  [15:0] outputs0_4;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+  reg  [15:0] outputs0_5;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+  reg  [15:0] outputs0_6;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+  reg  [15:0] outputs0_7;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+  reg  [15:0] outputs0_8;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+  reg  [15:0] outputs0_9;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+  reg  [15:0] outputs0_10;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+  reg  [15:0] outputs0_11;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+  reg  [15:0] outputs0_12;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+  reg  [15:0] outputs0_13;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+  reg  [15:0] outputs0_14;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+  reg  [15:0] outputs0_15;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+  reg  [15:0] outputs1_0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+  reg  [15:0] outputs1_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+  reg  [15:0] outputs1_2;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+  reg  [15:0] outputs1_3;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+  reg  [15:0] outputs1_4;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+  reg  [15:0] outputs1_5;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+  reg  [15:0] outputs1_6;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+  reg  [15:0] outputs1_7;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+  reg  [15:0] outputs1_8;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+  reg  [15:0] outputs1_9;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+  reg  [15:0] outputs1_10;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+  reg  [15:0] outputs1_11;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+  reg  [15:0] outputs1_12;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+  reg  [15:0] outputs1_13;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+  reg  [15:0] outputs1_14;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+  reg  [15:0] outputs1_15;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+  reg  [15:0] sum0_nextLevel_0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum0_nextLevel_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum0_nextLevel_2;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum0_nextLevel_3;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum0_nextLevel_4;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum0_nextLevel_5;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum0_nextLevel_6;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum0_nextLevel_7;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum0_nextLevel_0_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum0_nextLevel_1_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum0_nextLevel_2_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum0_nextLevel_3_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum0_nextLevel_0_2;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum0_nextLevel_1_2;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum1_nextLevel_0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum1_nextLevel_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum1_nextLevel_2;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum1_nextLevel_3;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum1_nextLevel_4;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum1_nextLevel_5;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum1_nextLevel_6;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum1_nextLevel_7;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum1_nextLevel_0_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum1_nextLevel_1_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum1_nextLevel_2_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum1_nextLevel_3_1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum1_nextLevel_0_2;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum1_nextLevel_1_2;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] sum1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+  reg  [15:0] io_result_REG;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:49:46]
+  wire [15:0] io_result_0 = io_fusion ? sum1 : io_result_REG;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28, :49:{21,46}]
+  `ifndef SYNTHESIS	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:11]
+    always @(posedge clock) begin	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:11]
+      if ((`PRINTF_COND_) & ~reset) begin	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:11, :50:11]
+        $fwrite(32'h80000002, "output0 = %b, output1 = %b\n", outputs0_0, outputs1_0);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66, :22:66, :24:11]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", outputs0_0, outputs0_1);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66, :24:11, :34:27]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", outputs0_2, outputs0_3);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66, :24:11, :34:27]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", outputs0_4, outputs0_5);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66, :24:11, :34:27]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", outputs0_6, outputs0_7);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66, :24:11, :34:27]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", outputs0_8, outputs0_9);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66, :24:11, :34:27]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", outputs0_10, outputs0_11);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66, :24:11, :34:27]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", outputs0_12, outputs0_13);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66, :24:11, :34:27]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", outputs0_14, outputs0_15);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66, :24:11, :34:27]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", sum0_nextLevel_0, sum0_nextLevel_1);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:11, :34:27, :35:28]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", sum0_nextLevel_2, sum0_nextLevel_3);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:11, :34:27, :35:28]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", sum0_nextLevel_4, sum0_nextLevel_5);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:11, :34:27, :35:28]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", sum0_nextLevel_6, sum0_nextLevel_7);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:11, :34:27, :35:28]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", sum0_nextLevel_0_1, sum0_nextLevel_1_1);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:11, :34:27, :35:28]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", sum0_nextLevel_2_1, sum0_nextLevel_3_1);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:11, :34:27, :35:28]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", sum0_nextLevel_0_2, sum0_nextLevel_1_2);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:11, :34:27, :35:28]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", outputs1_0, outputs1_1);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66, :24:11, :34:27]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", outputs1_2, outputs1_3);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66, :24:11, :34:27]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", outputs1_4, outputs1_5);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66, :24:11, :34:27]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", outputs1_6, outputs1_7);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66, :24:11, :34:27]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", outputs1_8, outputs1_9);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66, :24:11, :34:27]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", outputs1_10, outputs1_11);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66, :24:11, :34:27]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", outputs1_12, outputs1_13);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66, :24:11, :34:27]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", outputs1_14, outputs1_15);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66, :24:11, :34:27]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", sum1_nextLevel_0, sum1_nextLevel_1);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:11, :34:27, :35:28]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", sum1_nextLevel_2, sum1_nextLevel_3);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:11, :34:27, :35:28]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", sum1_nextLevel_4, sum1_nextLevel_5);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:11, :34:27, :35:28]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", sum1_nextLevel_6, sum1_nextLevel_7);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:11, :34:27, :35:28]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", sum1_nextLevel_0_1, sum1_nextLevel_1_1);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:11, :34:27, :35:28]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", sum1_nextLevel_2_1, sum1_nextLevel_3_1);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:11, :34:27, :35:28]
+        $fwrite(32'h80000002, "a: %b, b: %b\n", sum1_nextLevel_0_2, sum1_nextLevel_1_2);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:11, :34:27, :35:28]
+        $fwrite(32'h80000002, "io.result = %b\n", io_result_0);	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:11, :49:21, :50:11]
       end
     end // always @(posedge)
   `endif // not def SYNTHESIS
-  always @(posedge clock) begin	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7]
-    outputs0_REG <= _fusionArray_0_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :24:66]
-    outputs0_REG_1 <= _fusionArray_1_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :24:66]
-    outputs0_REG_2 <= _fusionArray_2_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :24:66]
-    outputs0_REG_3 <= _fusionArray_3_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :24:66]
-    outputs0_REG_4 <= _fusionArray_4_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :24:66]
-    outputs0_REG_5 <= _fusionArray_5_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :24:66]
-    outputs0_REG_6 <= _fusionArray_6_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :24:66]
-    outputs0_REG_7 <= _fusionArray_7_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :24:66]
-    outputs0_REG_8 <= _fusionArray_8_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :24:66]
-    outputs0_REG_9 <= _fusionArray_9_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :24:66]
-    outputs0_REG_10 <= _fusionArray_10_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :24:66]
-    outputs0_REG_11 <= _fusionArray_11_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :24:66]
-    outputs0_REG_12 <= _fusionArray_12_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :24:66]
-    outputs0_REG_13 <= _fusionArray_13_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :24:66]
-    outputs0_REG_14 <= _fusionArray_14_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :24:66]
-    outputs0_REG_15 <= _fusionArray_15_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :24:66]
-    outputs1_REG <= _fusionArray_0_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :30:66]
-    outputs1_REG_1 <= _fusionArray_1_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :30:66]
-    outputs1_REG_2 <= _fusionArray_2_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :30:66]
-    outputs1_REG_3 <= _fusionArray_3_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :30:66]
-    outputs1_REG_4 <= _fusionArray_4_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :30:66]
-    outputs1_REG_5 <= _fusionArray_5_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :30:66]
-    outputs1_REG_6 <= _fusionArray_6_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :30:66]
-    outputs1_REG_7 <= _fusionArray_7_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :30:66]
-    outputs1_REG_8 <= _fusionArray_8_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :30:66]
-    outputs1_REG_9 <= _fusionArray_9_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :30:66]
-    outputs1_REG_10 <= _fusionArray_10_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :30:66]
-    outputs1_REG_11 <= _fusionArray_11_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :30:66]
-    outputs1_REG_12 <= _fusionArray_12_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :30:66]
-    outputs1_REG_13 <= _fusionArray_13_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :30:66]
-    outputs1_REG_14 <= _fusionArray_14_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :30:66]
-    outputs1_REG_15 <= _fusionArray_15_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46, :30:66]
-    sum0_nextLevel_0 <= _sum0_nextLevel_adder_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum0_nextLevel_1 <= _sum0_nextLevel_adder_1_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum0_nextLevel_2 <= _sum0_nextLevel_adder_2_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum0_nextLevel_3 <= _sum0_nextLevel_adder_3_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum0_nextLevel_4 <= _sum0_nextLevel_adder_4_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum0_nextLevel_5 <= _sum0_nextLevel_adder_5_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum0_nextLevel_6 <= _sum0_nextLevel_adder_6_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum0_nextLevel_7 <= _sum0_nextLevel_adder_7_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum0_nextLevel_0_1 <= _sum0_nextLevel_adder_8_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum0_nextLevel_1_1 <= _sum0_nextLevel_adder_9_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum0_nextLevel_2_1 <= _sum0_nextLevel_adder_10_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum0_nextLevel_3_1 <= _sum0_nextLevel_adder_11_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum0_nextLevel_0_2 <= _sum0_nextLevel_adder_12_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum0_nextLevel_1_2 <= _sum0_nextLevel_adder_13_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum0 <= _sum0_nextLevel_adder_14_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum1_nextLevel_0 <= _sum1_nextLevel_adder_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum1_nextLevel_1 <= _sum1_nextLevel_adder_1_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum1_nextLevel_2 <= _sum1_nextLevel_adder_2_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum1_nextLevel_3 <= _sum1_nextLevel_adder_3_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum1_nextLevel_4 <= _sum1_nextLevel_adder_4_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum1_nextLevel_5 <= _sum1_nextLevel_adder_5_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum1_nextLevel_6 <= _sum1_nextLevel_adder_6_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum1_nextLevel_7 <= _sum1_nextLevel_adder_7_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum1_nextLevel_0_1 <= _sum1_nextLevel_adder_8_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum1_nextLevel_1_1 <= _sum1_nextLevel_adder_9_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum1_nextLevel_2_1 <= _sum1_nextLevel_adder_10_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum1_nextLevel_3_1 <= _sum1_nextLevel_adder_11_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum1_nextLevel_0_2 <= _sum1_nextLevel_adder_12_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum1_nextLevel_1_2 <= _sum1_nextLevel_adder_13_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    sum1 <= _sum1_nextLevel_adder_14_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39, :50:28]
-    transBack_io_in_REG <= _finalAdder_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:60:28, :68:52]
+  always @(posedge clock) begin	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7]
+    outputs0_0 <= _fusionArray_0_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :21:66]
+    outputs0_1 <= _fusionArray_1_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :21:66]
+    outputs0_2 <= _fusionArray_2_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :21:66]
+    outputs0_3 <= _fusionArray_3_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :21:66]
+    outputs0_4 <= _fusionArray_4_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :21:66]
+    outputs0_5 <= _fusionArray_5_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :21:66]
+    outputs0_6 <= _fusionArray_6_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :21:66]
+    outputs0_7 <= _fusionArray_7_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :21:66]
+    outputs0_8 <= _fusionArray_8_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :21:66]
+    outputs0_9 <= _fusionArray_9_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :21:66]
+    outputs0_10 <= _fusionArray_10_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :21:66]
+    outputs0_11 <= _fusionArray_11_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :21:66]
+    outputs0_12 <= _fusionArray_12_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :21:66]
+    outputs0_13 <= _fusionArray_13_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :21:66]
+    outputs0_14 <= _fusionArray_14_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :21:66]
+    outputs0_15 <= _fusionArray_15_io_output0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :21:66]
+    outputs1_0 <= _fusionArray_0_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :22:66]
+    outputs1_1 <= _fusionArray_1_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :22:66]
+    outputs1_2 <= _fusionArray_2_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :22:66]
+    outputs1_3 <= _fusionArray_3_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :22:66]
+    outputs1_4 <= _fusionArray_4_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :22:66]
+    outputs1_5 <= _fusionArray_5_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :22:66]
+    outputs1_6 <= _fusionArray_6_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :22:66]
+    outputs1_7 <= _fusionArray_7_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :22:66]
+    outputs1_8 <= _fusionArray_8_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :22:66]
+    outputs1_9 <= _fusionArray_9_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :22:66]
+    outputs1_10 <= _fusionArray_10_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :22:66]
+    outputs1_11 <= _fusionArray_11_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :22:66]
+    outputs1_12 <= _fusionArray_12_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :22:66]
+    outputs1_13 <= _fusionArray_13_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :22:66]
+    outputs1_14 <= _fusionArray_14_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :22:66]
+    outputs1_15 <= _fusionArray_15_io_output1;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46, :22:66]
+    sum0_nextLevel_0 <= _sum0_nextLevel_adder_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum0_nextLevel_1 <= _sum0_nextLevel_adder_1_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum0_nextLevel_2 <= _sum0_nextLevel_adder_2_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum0_nextLevel_3 <= _sum0_nextLevel_adder_3_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum0_nextLevel_4 <= _sum0_nextLevel_adder_4_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum0_nextLevel_5 <= _sum0_nextLevel_adder_5_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum0_nextLevel_6 <= _sum0_nextLevel_adder_6_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum0_nextLevel_7 <= _sum0_nextLevel_adder_7_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum0_nextLevel_0_1 <= _sum0_nextLevel_adder_8_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum0_nextLevel_1_1 <= _sum0_nextLevel_adder_9_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum0_nextLevel_2_1 <= _sum0_nextLevel_adder_10_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum0_nextLevel_3_1 <= _sum0_nextLevel_adder_11_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum0_nextLevel_0_2 <= _sum0_nextLevel_adder_12_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum0_nextLevel_1_2 <= _sum0_nextLevel_adder_13_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum0 <= _sum0_nextLevel_adder_14_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum1_nextLevel_0 <= _sum1_nextLevel_adder_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum1_nextLevel_1 <= _sum1_nextLevel_adder_1_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum1_nextLevel_2 <= _sum1_nextLevel_adder_2_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum1_nextLevel_3 <= _sum1_nextLevel_adder_3_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum1_nextLevel_4 <= _sum1_nextLevel_adder_4_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum1_nextLevel_5 <= _sum1_nextLevel_adder_5_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum1_nextLevel_6 <= _sum1_nextLevel_adder_6_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum1_nextLevel_7 <= _sum1_nextLevel_adder_7_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum1_nextLevel_0_1 <= _sum1_nextLevel_adder_8_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum1_nextLevel_1_1 <= _sum1_nextLevel_adder_9_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum1_nextLevel_2_1 <= _sum1_nextLevel_adder_10_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum1_nextLevel_3_1 <= _sum1_nextLevel_adder_11_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum1_nextLevel_0_2 <= _sum1_nextLevel_adder_12_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum1_nextLevel_1_2 <= _sum1_nextLevel_adder_13_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    sum1 <= _sum1_nextLevel_adder_14_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39, :35:28]
+    io_result_REG <= _finalAdder_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:45:28, :49:46]
   end // always @(posedge)
-  `ifdef ENABLE_INITIAL_REG_	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7]
-    `ifdef FIRRTL_BEFORE_INITIAL	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7]
-      `FIRRTL_BEFORE_INITIAL	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7]
+  `ifdef ENABLE_INITIAL_REG_	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7]
+    `ifdef FIRRTL_BEFORE_INITIAL	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7]
+      `FIRRTL_BEFORE_INITIAL	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7]
     `endif // FIRRTL_BEFORE_INITIAL
-    logic [31:0] _RANDOM[0:32];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7]
-    initial begin	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7]
-      `ifdef INIT_RANDOM_PROLOG_	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7]
-        `INIT_RANDOM_PROLOG_	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7]
+    logic [31:0] _RANDOM[0:31];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7]
+    initial begin	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7]
+      `ifdef INIT_RANDOM_PROLOG_	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7]
+        `INIT_RANDOM_PROLOG_	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7]
       `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7]
-        for (logic [5:0] i = 6'h0; i < 6'h21; i += 6'h1) begin
-          _RANDOM[i] = `RANDOM;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7]
-        end	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7]
-        outputs0_REG = _RANDOM[6'h0][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :24:66]
-        outputs0_REG_1 = _RANDOM[6'h0][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :24:66]
-        outputs0_REG_2 = _RANDOM[6'h1][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :24:66]
-        outputs0_REG_3 = _RANDOM[6'h1][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :24:66]
-        outputs0_REG_4 = _RANDOM[6'h2][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :24:66]
-        outputs0_REG_5 = _RANDOM[6'h2][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :24:66]
-        outputs0_REG_6 = _RANDOM[6'h3][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :24:66]
-        outputs0_REG_7 = _RANDOM[6'h3][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :24:66]
-        outputs0_REG_8 = _RANDOM[6'h4][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :24:66]
-        outputs0_REG_9 = _RANDOM[6'h4][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :24:66]
-        outputs0_REG_10 = _RANDOM[6'h5][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :24:66]
-        outputs0_REG_11 = _RANDOM[6'h5][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :24:66]
-        outputs0_REG_12 = _RANDOM[6'h6][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :24:66]
-        outputs0_REG_13 = _RANDOM[6'h6][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :24:66]
-        outputs0_REG_14 = _RANDOM[6'h7][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :24:66]
-        outputs0_REG_15 = _RANDOM[6'h7][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :24:66]
-        outputs1_REG = _RANDOM[6'h8][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :30:66]
-        outputs1_REG_1 = _RANDOM[6'h8][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :30:66]
-        outputs1_REG_2 = _RANDOM[6'h9][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :30:66]
-        outputs1_REG_3 = _RANDOM[6'h9][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :30:66]
-        outputs1_REG_4 = _RANDOM[6'hA][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :30:66]
-        outputs1_REG_5 = _RANDOM[6'hA][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :30:66]
-        outputs1_REG_6 = _RANDOM[6'hB][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :30:66]
-        outputs1_REG_7 = _RANDOM[6'hB][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :30:66]
-        outputs1_REG_8 = _RANDOM[6'hC][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :30:66]
-        outputs1_REG_9 = _RANDOM[6'hC][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :30:66]
-        outputs1_REG_10 = _RANDOM[6'hD][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :30:66]
-        outputs1_REG_11 = _RANDOM[6'hD][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :30:66]
-        outputs1_REG_12 = _RANDOM[6'hE][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :30:66]
-        outputs1_REG_13 = _RANDOM[6'hE][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :30:66]
-        outputs1_REG_14 = _RANDOM[6'hF][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :30:66]
-        outputs1_REG_15 = _RANDOM[6'hF][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :30:66]
-        sum0_nextLevel_0 = _RANDOM[6'h10][16:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum0_nextLevel_1 = {_RANDOM[6'h10][31:17], _RANDOM[6'h11][1:0]};	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum0_nextLevel_2 = _RANDOM[6'h11][18:2];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum0_nextLevel_3 = {_RANDOM[6'h11][31:19], _RANDOM[6'h12][3:0]};	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum0_nextLevel_4 = _RANDOM[6'h12][20:4];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum0_nextLevel_5 = {_RANDOM[6'h12][31:21], _RANDOM[6'h13][5:0]};	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum0_nextLevel_6 = _RANDOM[6'h13][22:6];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum0_nextLevel_7 = {_RANDOM[6'h13][31:23], _RANDOM[6'h14][7:0]};	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum0_nextLevel_0_1 = _RANDOM[6'h14][24:8];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum0_nextLevel_1_1 = {_RANDOM[6'h14][31:25], _RANDOM[6'h15][9:0]};	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum0_nextLevel_2_1 = _RANDOM[6'h15][26:10];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum0_nextLevel_3_1 = {_RANDOM[6'h15][31:27], _RANDOM[6'h16][11:0]};	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum0_nextLevel_0_2 = _RANDOM[6'h16][28:12];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum0_nextLevel_1_2 = {_RANDOM[6'h16][31:29], _RANDOM[6'h17][13:0]};	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum0 = _RANDOM[6'h17][30:14];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum1_nextLevel_0 = {_RANDOM[6'h17][31], _RANDOM[6'h18][15:0]};	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum1_nextLevel_1 = {_RANDOM[6'h18][31:16], _RANDOM[6'h19][0]};	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum1_nextLevel_2 = _RANDOM[6'h19][17:1];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum1_nextLevel_3 = {_RANDOM[6'h19][31:18], _RANDOM[6'h1A][2:0]};	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum1_nextLevel_4 = _RANDOM[6'h1A][19:3];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum1_nextLevel_5 = {_RANDOM[6'h1A][31:20], _RANDOM[6'h1B][4:0]};	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum1_nextLevel_6 = _RANDOM[6'h1B][21:5];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum1_nextLevel_7 = {_RANDOM[6'h1B][31:22], _RANDOM[6'h1C][6:0]};	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum1_nextLevel_0_1 = _RANDOM[6'h1C][23:7];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum1_nextLevel_1_1 = {_RANDOM[6'h1C][31:24], _RANDOM[6'h1D][8:0]};	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum1_nextLevel_2_1 = _RANDOM[6'h1D][25:9];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum1_nextLevel_3_1 = {_RANDOM[6'h1D][31:26], _RANDOM[6'h1E][10:0]};	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum1_nextLevel_0_2 = _RANDOM[6'h1E][27:11];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum1_nextLevel_1_2 = {_RANDOM[6'h1E][31:28], _RANDOM[6'h1F][12:0]};	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        sum1 = _RANDOM[6'h1F][29:13];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28]
-        transBack_io_in_REG = {_RANDOM[6'h1F][31:30], _RANDOM[6'h20][14:0]};	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :50:28, :68:52]
+      `ifdef RANDOMIZE_REG_INIT	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7]
+        for (logic [5:0] i = 6'h0; i < 6'h20; i += 6'h1) begin
+          _RANDOM[i[4:0]] = `RANDOM;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7]
+        end	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7]
+        outputs0_0 = _RANDOM[5'h0][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :21:66]
+        outputs0_1 = _RANDOM[5'h0][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :21:66]
+        outputs0_2 = _RANDOM[5'h1][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :21:66]
+        outputs0_3 = _RANDOM[5'h1][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :21:66]
+        outputs0_4 = _RANDOM[5'h2][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :21:66]
+        outputs0_5 = _RANDOM[5'h2][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :21:66]
+        outputs0_6 = _RANDOM[5'h3][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :21:66]
+        outputs0_7 = _RANDOM[5'h3][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :21:66]
+        outputs0_8 = _RANDOM[5'h4][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :21:66]
+        outputs0_9 = _RANDOM[5'h4][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :21:66]
+        outputs0_10 = _RANDOM[5'h5][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :21:66]
+        outputs0_11 = _RANDOM[5'h5][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :21:66]
+        outputs0_12 = _RANDOM[5'h6][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :21:66]
+        outputs0_13 = _RANDOM[5'h6][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :21:66]
+        outputs0_14 = _RANDOM[5'h7][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :21:66]
+        outputs0_15 = _RANDOM[5'h7][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :21:66]
+        outputs1_0 = _RANDOM[5'h8][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :22:66]
+        outputs1_1 = _RANDOM[5'h8][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :22:66]
+        outputs1_2 = _RANDOM[5'h9][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :22:66]
+        outputs1_3 = _RANDOM[5'h9][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :22:66]
+        outputs1_4 = _RANDOM[5'hA][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :22:66]
+        outputs1_5 = _RANDOM[5'hA][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :22:66]
+        outputs1_6 = _RANDOM[5'hB][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :22:66]
+        outputs1_7 = _RANDOM[5'hB][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :22:66]
+        outputs1_8 = _RANDOM[5'hC][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :22:66]
+        outputs1_9 = _RANDOM[5'hC][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :22:66]
+        outputs1_10 = _RANDOM[5'hD][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :22:66]
+        outputs1_11 = _RANDOM[5'hD][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :22:66]
+        outputs1_12 = _RANDOM[5'hE][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :22:66]
+        outputs1_13 = _RANDOM[5'hE][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :22:66]
+        outputs1_14 = _RANDOM[5'hF][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :22:66]
+        outputs1_15 = _RANDOM[5'hF][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :22:66]
+        sum0_nextLevel_0 = _RANDOM[5'h10][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum0_nextLevel_1 = _RANDOM[5'h10][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum0_nextLevel_2 = _RANDOM[5'h11][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum0_nextLevel_3 = _RANDOM[5'h11][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum0_nextLevel_4 = _RANDOM[5'h12][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum0_nextLevel_5 = _RANDOM[5'h12][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum0_nextLevel_6 = _RANDOM[5'h13][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum0_nextLevel_7 = _RANDOM[5'h13][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum0_nextLevel_0_1 = _RANDOM[5'h14][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum0_nextLevel_1_1 = _RANDOM[5'h14][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum0_nextLevel_2_1 = _RANDOM[5'h15][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum0_nextLevel_3_1 = _RANDOM[5'h15][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum0_nextLevel_0_2 = _RANDOM[5'h16][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum0_nextLevel_1_2 = _RANDOM[5'h16][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum0 = _RANDOM[5'h17][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum1_nextLevel_0 = _RANDOM[5'h17][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum1_nextLevel_1 = _RANDOM[5'h18][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum1_nextLevel_2 = _RANDOM[5'h18][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum1_nextLevel_3 = _RANDOM[5'h19][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum1_nextLevel_4 = _RANDOM[5'h19][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum1_nextLevel_5 = _RANDOM[5'h1A][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum1_nextLevel_6 = _RANDOM[5'h1A][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum1_nextLevel_7 = _RANDOM[5'h1B][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum1_nextLevel_0_1 = _RANDOM[5'h1B][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum1_nextLevel_1_1 = _RANDOM[5'h1C][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum1_nextLevel_2_1 = _RANDOM[5'h1C][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum1_nextLevel_3_1 = _RANDOM[5'h1D][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum1_nextLevel_0_2 = _RANDOM[5'h1D][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum1_nextLevel_1_2 = _RANDOM[5'h1E][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        sum1 = _RANDOM[5'h1E][31:16];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :35:28]
+        io_result_REG = _RANDOM[5'h1F][15:0];	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :49:46]
       `endif // RANDOMIZE_REG_INIT
     end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7]
-      `FIRRTL_AFTER_INITIAL	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7]
+    `ifdef FIRRTL_AFTER_INITIAL	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7]
+      `FIRRTL_AFTER_INITIAL	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7]
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  Fusion fusionArray_0 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
+  Fusion fusionArray_0 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
     .clock      (clock),
     .reset      (reset),
     .io_int8    (io_int_0),
@@ -487,7 +438,7 @@ module InnerProduct(	// @[home/yzy/chisel-playground/playground/src/InnerProduct
     .io_output0 (_fusionArray_0_io_output0),
     .io_output1 (_fusionArray_0_io_output1)
   );
-  Fusion fusionArray_1 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
+  Fusion fusionArray_1 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
     .clock      (clock),
     .reset      (reset),
     .io_int8    (io_int_1),
@@ -497,7 +448,7 @@ module InnerProduct(	// @[home/yzy/chisel-playground/playground/src/InnerProduct
     .io_output0 (_fusionArray_1_io_output0),
     .io_output1 (_fusionArray_1_io_output1)
   );
-  Fusion fusionArray_2 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
+  Fusion fusionArray_2 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
     .clock      (clock),
     .reset      (reset),
     .io_int8    (io_int_2),
@@ -507,7 +458,7 @@ module InnerProduct(	// @[home/yzy/chisel-playground/playground/src/InnerProduct
     .io_output0 (_fusionArray_2_io_output0),
     .io_output1 (_fusionArray_2_io_output1)
   );
-  Fusion fusionArray_3 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
+  Fusion fusionArray_3 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
     .clock      (clock),
     .reset      (reset),
     .io_int8    (io_int_3),
@@ -517,7 +468,7 @@ module InnerProduct(	// @[home/yzy/chisel-playground/playground/src/InnerProduct
     .io_output0 (_fusionArray_3_io_output0),
     .io_output1 (_fusionArray_3_io_output1)
   );
-  Fusion fusionArray_4 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
+  Fusion fusionArray_4 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
     .clock      (clock),
     .reset      (reset),
     .io_int8    (io_int_4),
@@ -527,7 +478,7 @@ module InnerProduct(	// @[home/yzy/chisel-playground/playground/src/InnerProduct
     .io_output0 (_fusionArray_4_io_output0),
     .io_output1 (_fusionArray_4_io_output1)
   );
-  Fusion fusionArray_5 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
+  Fusion fusionArray_5 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
     .clock      (clock),
     .reset      (reset),
     .io_int8    (io_int_5),
@@ -537,7 +488,7 @@ module InnerProduct(	// @[home/yzy/chisel-playground/playground/src/InnerProduct
     .io_output0 (_fusionArray_5_io_output0),
     .io_output1 (_fusionArray_5_io_output1)
   );
-  Fusion fusionArray_6 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
+  Fusion fusionArray_6 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
     .clock      (clock),
     .reset      (reset),
     .io_int8    (io_int_6),
@@ -547,7 +498,7 @@ module InnerProduct(	// @[home/yzy/chisel-playground/playground/src/InnerProduct
     .io_output0 (_fusionArray_6_io_output0),
     .io_output1 (_fusionArray_6_io_output1)
   );
-  Fusion fusionArray_7 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
+  Fusion fusionArray_7 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
     .clock      (clock),
     .reset      (reset),
     .io_int8    (io_int_7),
@@ -557,7 +508,7 @@ module InnerProduct(	// @[home/yzy/chisel-playground/playground/src/InnerProduct
     .io_output0 (_fusionArray_7_io_output0),
     .io_output1 (_fusionArray_7_io_output1)
   );
-  Fusion fusionArray_8 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
+  Fusion fusionArray_8 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
     .clock      (clock),
     .reset      (reset),
     .io_int8    (io_int_8),
@@ -567,7 +518,7 @@ module InnerProduct(	// @[home/yzy/chisel-playground/playground/src/InnerProduct
     .io_output0 (_fusionArray_8_io_output0),
     .io_output1 (_fusionArray_8_io_output1)
   );
-  Fusion fusionArray_9 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
+  Fusion fusionArray_9 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
     .clock      (clock),
     .reset      (reset),
     .io_int8    (io_int_9),
@@ -577,7 +528,7 @@ module InnerProduct(	// @[home/yzy/chisel-playground/playground/src/InnerProduct
     .io_output0 (_fusionArray_9_io_output0),
     .io_output1 (_fusionArray_9_io_output1)
   );
-  Fusion fusionArray_10 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
+  Fusion fusionArray_10 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
     .clock      (clock),
     .reset      (reset),
     .io_int8    (io_int_10),
@@ -587,7 +538,7 @@ module InnerProduct(	// @[home/yzy/chisel-playground/playground/src/InnerProduct
     .io_output0 (_fusionArray_10_io_output0),
     .io_output1 (_fusionArray_10_io_output1)
   );
-  Fusion fusionArray_11 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
+  Fusion fusionArray_11 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
     .clock      (clock),
     .reset      (reset),
     .io_int8    (io_int_11),
@@ -597,7 +548,7 @@ module InnerProduct(	// @[home/yzy/chisel-playground/playground/src/InnerProduct
     .io_output0 (_fusionArray_11_io_output0),
     .io_output1 (_fusionArray_11_io_output1)
   );
-  Fusion fusionArray_12 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
+  Fusion fusionArray_12 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
     .clock      (clock),
     .reset      (reset),
     .io_int8    (io_int_12),
@@ -607,7 +558,7 @@ module InnerProduct(	// @[home/yzy/chisel-playground/playground/src/InnerProduct
     .io_output0 (_fusionArray_12_io_output0),
     .io_output1 (_fusionArray_12_io_output1)
   );
-  Fusion fusionArray_13 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
+  Fusion fusionArray_13 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
     .clock      (clock),
     .reset      (reset),
     .io_int8    (io_int_13),
@@ -617,7 +568,7 @@ module InnerProduct(	// @[home/yzy/chisel-playground/playground/src/InnerProduct
     .io_output0 (_fusionArray_13_io_output0),
     .io_output1 (_fusionArray_13_io_output1)
   );
-  Fusion fusionArray_14 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
+  Fusion fusionArray_14 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
     .clock      (clock),
     .reset      (reset),
     .io_int8    (io_int_14),
@@ -627,7 +578,7 @@ module InnerProduct(	// @[home/yzy/chisel-playground/playground/src/InnerProduct
     .io_output0 (_fusionArray_14_io_output0),
     .io_output1 (_fusionArray_14_io_output1)
   );
-  Fusion fusionArray_15 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:16:46]
+  Fusion fusionArray_15 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:13:46]
     .clock      (clock),
     .reset      (reset),
     .io_int8    (io_int_15),
@@ -637,293 +588,223 @@ module InnerProduct(	// @[home/yzy/chisel-playground/playground/src/InnerProduct
     .io_output0 (_fusionArray_15_io_output0),
     .io_output1 (_fusionArray_15_io_output1)
   );
-  fNToRecFN outputs0_trans (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_in  (outputs0_REG),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-    .io_out (_outputs0_trans_io_out)
-  );
-  fNToRecFN outputs0_trans_1 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_in  (outputs0_REG_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-    .io_out (_outputs0_trans_1_io_out)
-  );
-  fNToRecFN outputs0_trans_2 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_in  (outputs0_REG_2),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-    .io_out (_outputs0_trans_2_io_out)
-  );
-  fNToRecFN outputs0_trans_3 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_in  (outputs0_REG_3),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-    .io_out (_outputs0_trans_3_io_out)
-  );
-  fNToRecFN outputs0_trans_4 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_in  (outputs0_REG_4),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-    .io_out (_outputs0_trans_4_io_out)
-  );
-  fNToRecFN outputs0_trans_5 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_in  (outputs0_REG_5),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-    .io_out (_outputs0_trans_5_io_out)
-  );
-  fNToRecFN outputs0_trans_6 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_in  (outputs0_REG_6),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-    .io_out (_outputs0_trans_6_io_out)
-  );
-  fNToRecFN outputs0_trans_7 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_in  (outputs0_REG_7),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-    .io_out (_outputs0_trans_7_io_out)
-  );
-  fNToRecFN outputs0_trans_8 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_in  (outputs0_REG_8),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-    .io_out (_outputs0_trans_8_io_out)
-  );
-  fNToRecFN outputs0_trans_9 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_in  (outputs0_REG_9),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-    .io_out (_outputs0_trans_9_io_out)
-  );
-  fNToRecFN outputs0_trans_10 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_in  (outputs0_REG_10),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-    .io_out (_outputs0_trans_10_io_out)
-  );
-  fNToRecFN outputs0_trans_11 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_in  (outputs0_REG_11),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-    .io_out (_outputs0_trans_11_io_out)
-  );
-  fNToRecFN outputs0_trans_12 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_in  (outputs0_REG_12),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-    .io_out (_outputs0_trans_12_io_out)
-  );
-  fNToRecFN outputs0_trans_13 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_in  (outputs0_REG_13),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-    .io_out (_outputs0_trans_13_io_out)
-  );
-  fNToRecFN outputs0_trans_14 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_in  (outputs0_REG_14),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-    .io_out (_outputs0_trans_14_io_out)
-  );
-  fNToRecFN outputs0_trans_15 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_in  (outputs0_REG_15),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:24:66]
-    .io_out (_outputs0_trans_15_io_out)
-  );
-  fNToRecFN outputs1_trans (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_in  (outputs1_REG),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-    .io_out (_outputs1_trans_io_out)
-  );
-  fNToRecFN outputs1_trans_1 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_in  (outputs1_REG_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-    .io_out (_outputs1_trans_1_io_out)
-  );
-  fNToRecFN outputs1_trans_2 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_in  (outputs1_REG_2),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-    .io_out (_outputs1_trans_2_io_out)
-  );
-  fNToRecFN outputs1_trans_3 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_in  (outputs1_REG_3),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-    .io_out (_outputs1_trans_3_io_out)
-  );
-  fNToRecFN outputs1_trans_4 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_in  (outputs1_REG_4),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-    .io_out (_outputs1_trans_4_io_out)
-  );
-  fNToRecFN outputs1_trans_5 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_in  (outputs1_REG_5),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-    .io_out (_outputs1_trans_5_io_out)
-  );
-  fNToRecFN outputs1_trans_6 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_in  (outputs1_REG_6),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-    .io_out (_outputs1_trans_6_io_out)
-  );
-  fNToRecFN outputs1_trans_7 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_in  (outputs1_REG_7),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-    .io_out (_outputs1_trans_7_io_out)
-  );
-  fNToRecFN outputs1_trans_8 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_in  (outputs1_REG_8),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-    .io_out (_outputs1_trans_8_io_out)
-  );
-  fNToRecFN outputs1_trans_9 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_in  (outputs1_REG_9),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-    .io_out (_outputs1_trans_9_io_out)
-  );
-  fNToRecFN outputs1_trans_10 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_in  (outputs1_REG_10),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-    .io_out (_outputs1_trans_10_io_out)
-  );
-  fNToRecFN outputs1_trans_11 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_in  (outputs1_REG_11),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-    .io_out (_outputs1_trans_11_io_out)
-  );
-  fNToRecFN outputs1_trans_12 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_in  (outputs1_REG_12),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-    .io_out (_outputs1_trans_12_io_out)
-  );
-  fNToRecFN outputs1_trans_13 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_in  (outputs1_REG_13),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-    .io_out (_outputs1_trans_13_io_out)
-  );
-  fNToRecFN outputs1_trans_14 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_in  (outputs1_REG_14),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-    .io_out (_outputs1_trans_14_io_out)
-  );
-  fNToRecFN outputs1_trans_15 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_in  (outputs1_REG_15),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:30:66]
-    .io_out (_outputs1_trans_15_io_out)
-  );
-  AddRecFN sum0_nextLevel_adder (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (_outputs0_trans_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_b   (_outputs0_trans_1_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
+  fp16Add sum0_nextLevel_adder (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (outputs0_0),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+    .io_b   (outputs0_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
     .io_out (_sum0_nextLevel_adder_io_out)
   );
-  AddRecFN sum0_nextLevel_adder_1 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (_outputs0_trans_2_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_b   (_outputs0_trans_3_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
+  fp16Add sum0_nextLevel_adder_1 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (outputs0_2),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+    .io_b   (outputs0_3),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
     .io_out (_sum0_nextLevel_adder_1_io_out)
   );
-  AddRecFN sum0_nextLevel_adder_2 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (_outputs0_trans_4_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_b   (_outputs0_trans_5_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
+  fp16Add sum0_nextLevel_adder_2 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (outputs0_4),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+    .io_b   (outputs0_5),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
     .io_out (_sum0_nextLevel_adder_2_io_out)
   );
-  AddRecFN sum0_nextLevel_adder_3 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (_outputs0_trans_6_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_b   (_outputs0_trans_7_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
+  fp16Add sum0_nextLevel_adder_3 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (outputs0_6),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+    .io_b   (outputs0_7),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
     .io_out (_sum0_nextLevel_adder_3_io_out)
   );
-  AddRecFN sum0_nextLevel_adder_4 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (_outputs0_trans_8_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_b   (_outputs0_trans_9_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
+  fp16Add sum0_nextLevel_adder_4 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (outputs0_8),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+    .io_b   (outputs0_9),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
     .io_out (_sum0_nextLevel_adder_4_io_out)
   );
-  AddRecFN sum0_nextLevel_adder_5 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (_outputs0_trans_10_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_b   (_outputs0_trans_11_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
+  fp16Add sum0_nextLevel_adder_5 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (outputs0_10),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+    .io_b   (outputs0_11),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
     .io_out (_sum0_nextLevel_adder_5_io_out)
   );
-  AddRecFN sum0_nextLevel_adder_6 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (_outputs0_trans_12_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_b   (_outputs0_trans_13_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
+  fp16Add sum0_nextLevel_adder_6 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (outputs0_12),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+    .io_b   (outputs0_13),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
     .io_out (_sum0_nextLevel_adder_6_io_out)
   );
-  AddRecFN sum0_nextLevel_adder_7 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (_outputs0_trans_14_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
-    .io_b   (_outputs0_trans_15_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:25:27]
+  fp16Add sum0_nextLevel_adder_7 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (outputs0_14),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
+    .io_b   (outputs0_15),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:21:66]
     .io_out (_sum0_nextLevel_adder_7_io_out)
   );
-  AddRecFN sum0_nextLevel_adder_8 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (sum0_nextLevel_0),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-    .io_b   (sum0_nextLevel_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
+  fp16Add sum0_nextLevel_adder_8 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (sum0_nextLevel_0),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+    .io_b   (sum0_nextLevel_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
     .io_out (_sum0_nextLevel_adder_8_io_out)
   );
-  AddRecFN sum0_nextLevel_adder_9 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (sum0_nextLevel_2),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-    .io_b   (sum0_nextLevel_3),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
+  fp16Add sum0_nextLevel_adder_9 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (sum0_nextLevel_2),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+    .io_b   (sum0_nextLevel_3),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
     .io_out (_sum0_nextLevel_adder_9_io_out)
   );
-  AddRecFN sum0_nextLevel_adder_10 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (sum0_nextLevel_4),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-    .io_b   (sum0_nextLevel_5),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
+  fp16Add sum0_nextLevel_adder_10 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (sum0_nextLevel_4),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+    .io_b   (sum0_nextLevel_5),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
     .io_out (_sum0_nextLevel_adder_10_io_out)
   );
-  AddRecFN sum0_nextLevel_adder_11 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (sum0_nextLevel_6),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-    .io_b   (sum0_nextLevel_7),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
+  fp16Add sum0_nextLevel_adder_11 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (sum0_nextLevel_6),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+    .io_b   (sum0_nextLevel_7),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
     .io_out (_sum0_nextLevel_adder_11_io_out)
   );
-  AddRecFN sum0_nextLevel_adder_12 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (sum0_nextLevel_0_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-    .io_b   (sum0_nextLevel_1_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
+  fp16Add sum0_nextLevel_adder_12 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (sum0_nextLevel_0_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+    .io_b   (sum0_nextLevel_1_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
     .io_out (_sum0_nextLevel_adder_12_io_out)
   );
-  AddRecFN sum0_nextLevel_adder_13 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (sum0_nextLevel_2_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-    .io_b   (sum0_nextLevel_3_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
+  fp16Add sum0_nextLevel_adder_13 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (sum0_nextLevel_2_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+    .io_b   (sum0_nextLevel_3_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
     .io_out (_sum0_nextLevel_adder_13_io_out)
   );
-  AddRecFN sum0_nextLevel_adder_14 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (sum0_nextLevel_0_2),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-    .io_b   (sum0_nextLevel_1_2),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
+  fp16Add sum0_nextLevel_adder_14 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (sum0_nextLevel_0_2),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+    .io_b   (sum0_nextLevel_1_2),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
     .io_out (_sum0_nextLevel_adder_14_io_out)
   );
-  AddRecFN sum1_nextLevel_adder (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (_outputs1_trans_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_b   (_outputs1_trans_1_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
+  fp16Add sum1_nextLevel_adder (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (outputs1_0),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+    .io_b   (outputs1_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
     .io_out (_sum1_nextLevel_adder_io_out)
   );
-  AddRecFN sum1_nextLevel_adder_1 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (_outputs1_trans_2_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_b   (_outputs1_trans_3_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
+  fp16Add sum1_nextLevel_adder_1 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (outputs1_2),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+    .io_b   (outputs1_3),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
     .io_out (_sum1_nextLevel_adder_1_io_out)
   );
-  AddRecFN sum1_nextLevel_adder_2 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (_outputs1_trans_4_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_b   (_outputs1_trans_5_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
+  fp16Add sum1_nextLevel_adder_2 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (outputs1_4),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+    .io_b   (outputs1_5),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
     .io_out (_sum1_nextLevel_adder_2_io_out)
   );
-  AddRecFN sum1_nextLevel_adder_3 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (_outputs1_trans_6_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_b   (_outputs1_trans_7_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
+  fp16Add sum1_nextLevel_adder_3 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (outputs1_6),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+    .io_b   (outputs1_7),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
     .io_out (_sum1_nextLevel_adder_3_io_out)
   );
-  AddRecFN sum1_nextLevel_adder_4 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (_outputs1_trans_8_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_b   (_outputs1_trans_9_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
+  fp16Add sum1_nextLevel_adder_4 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (outputs1_8),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+    .io_b   (outputs1_9),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
     .io_out (_sum1_nextLevel_adder_4_io_out)
   );
-  AddRecFN sum1_nextLevel_adder_5 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (_outputs1_trans_10_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_b   (_outputs1_trans_11_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
+  fp16Add sum1_nextLevel_adder_5 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (outputs1_10),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+    .io_b   (outputs1_11),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
     .io_out (_sum1_nextLevel_adder_5_io_out)
   );
-  AddRecFN sum1_nextLevel_adder_6 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (_outputs1_trans_12_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_b   (_outputs1_trans_13_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
+  fp16Add sum1_nextLevel_adder_6 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (outputs1_12),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+    .io_b   (outputs1_13),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
     .io_out (_sum1_nextLevel_adder_6_io_out)
   );
-  AddRecFN sum1_nextLevel_adder_7 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (_outputs1_trans_14_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
-    .io_b   (_outputs1_trans_15_io_out),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:27]
+  fp16Add sum1_nextLevel_adder_7 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (outputs1_14),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
+    .io_b   (outputs1_15),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:22:66]
     .io_out (_sum1_nextLevel_adder_7_io_out)
   );
-  AddRecFN sum1_nextLevel_adder_8 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (sum1_nextLevel_0),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-    .io_b   (sum1_nextLevel_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
+  fp16Add sum1_nextLevel_adder_8 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (sum1_nextLevel_0),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+    .io_b   (sum1_nextLevel_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
     .io_out (_sum1_nextLevel_adder_8_io_out)
   );
-  AddRecFN sum1_nextLevel_adder_9 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (sum1_nextLevel_2),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-    .io_b   (sum1_nextLevel_3),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
+  fp16Add sum1_nextLevel_adder_9 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (sum1_nextLevel_2),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+    .io_b   (sum1_nextLevel_3),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
     .io_out (_sum1_nextLevel_adder_9_io_out)
   );
-  AddRecFN sum1_nextLevel_adder_10 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (sum1_nextLevel_4),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-    .io_b   (sum1_nextLevel_5),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
+  fp16Add sum1_nextLevel_adder_10 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (sum1_nextLevel_4),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+    .io_b   (sum1_nextLevel_5),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
     .io_out (_sum1_nextLevel_adder_10_io_out)
   );
-  AddRecFN sum1_nextLevel_adder_11 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (sum1_nextLevel_6),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-    .io_b   (sum1_nextLevel_7),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
+  fp16Add sum1_nextLevel_adder_11 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (sum1_nextLevel_6),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+    .io_b   (sum1_nextLevel_7),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
     .io_out (_sum1_nextLevel_adder_11_io_out)
   );
-  AddRecFN sum1_nextLevel_adder_12 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (sum1_nextLevel_0_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-    .io_b   (sum1_nextLevel_1_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
+  fp16Add sum1_nextLevel_adder_12 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (sum1_nextLevel_0_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+    .io_b   (sum1_nextLevel_1_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
     .io_out (_sum1_nextLevel_adder_12_io_out)
   );
-  AddRecFN sum1_nextLevel_adder_13 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (sum1_nextLevel_2_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-    .io_b   (sum1_nextLevel_3_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
+  fp16Add sum1_nextLevel_adder_13 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (sum1_nextLevel_2_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+    .io_b   (sum1_nextLevel_3_1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
     .io_out (_sum1_nextLevel_adder_13_io_out)
   );
-  AddRecFN sum1_nextLevel_adder_14 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:43:39]
-    .io_a   (sum1_nextLevel_0_2),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-    .io_b   (sum1_nextLevel_1_2),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
+  fp16Add sum1_nextLevel_adder_14 (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:31:39]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (sum1_nextLevel_0_2),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+    .io_b   (sum1_nextLevel_1_2),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
     .io_out (_sum1_nextLevel_adder_14_io_out)
   );
-  AddRecFN finalAdder (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:60:28]
-    .io_a   (sum0),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
-    .io_b   (sum1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28]
+  fp16Add finalAdder (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:45:28]
+    .clock  (clock),
+    .reset  (reset),
+    .io_a   (sum0),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
+    .io_b   (sum1),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:35:28]
     .io_out (_finalAdder_io_out)
   );
-  recFNToFN transBack (	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:67:27]
-    .io_in  (io_fusion ? sum1 : transBack_io_in_REG),	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:50:28, :68:{27,52}]
-    .io_out (_transBack_io_out)
-  );
-  assign io_result = _transBack_io_out;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:9:7, :67:27]
+  assign io_result = io_result_0;	// @[home/yzy/chisel-playground/playground/src/InnerProduct.scala:6:7, :49:21]
 endmodule
 
